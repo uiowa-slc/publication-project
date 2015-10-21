@@ -1,0 +1,1262 @@
+/* Site Specific Settings: */
+$footer-padding: 180px;
+$topbar-base-color: #444;
+$article-row-width: 1600px;
+$article-poetry-padding: 150px;
+
+ /* Foundation Settings: */
+
+
+// The latest settings can be found here:
+// https://github.com/zurb/bower-foundation/blob/master/scss/foundation/_settings.scss
+
+// Default Colors
+//$primary-color: #1A79AB;
+$primary-color: #227394;
+$secondary-color: #746457;
+$primary-brown: #28201A;
+// $alert-color: #f04124;
+// $success-color: #43AC6A;
+// $warning-color: #f08a24;
+// $info-color: #a0d3e8;
+$gray: #9f9f9f;
+$lightGray: #F8f8f8;
+$darkGray: #666666;
+
+// Foundation by ZURB
+// foundation.zurb.com
+// Licensed under MIT Open Source
+
+//
+// FOUNDATION SETTINGS
+//
+
+// This is the default html and body font-size for the base rem value.
+ $rem-base: 16px;
+
+// Allows the use of rem-calc() or lower-bound() in your settings
+@import "foundation/functions";
+
+// $experimental: true;
+
+// The default font-size is set to 100% of the browser style sheet (usually 16px)
+// for compatibility with browser-based text zoom or user-set defaults.
+
+// Since the typical default browser font-size is 16px, that makes the calculation for grid size.
+// If you want your base font-size to be different and not have it affect the grid breakpoints,
+// set $rem-base to $base-font-size and make sure $base-font-size is a px value.
+ $base-font-size: 130%;
+
+// The $base-line-height is 100% while $base-font-size is 150%
+ $base-line-height: 150%;
+
+// We use this to control whether or not CSS classes come through in the gem files.
+// $include-html-classes: true;
+// $include-print-styles: true;
+// $include-html-global-classes: $include-html-classes;
+
+// Grid
+
+// $include-html-grid-classes: $include-html-classes;
+ $include-xl-html-grid-classes: true;
+
+ $row-width: 1360px;
+ $column-gutter: rem-calc(35);
+// $total-columns: 12;
+
+// We use these to control various global styles
+ $body-bg: url(data:image/gif;base64,R0lGODlhyADIAMQAAO7m2fTs3/Hn2/Lo3PDm2u3l2PPp3fDq3O/l2fHr3e/p2/Xt4Ozk1/Tq3u7k2PLs3uvj1vXr3/bu4fPt3+7o2u3j1/bs4Ori1fPr3u/n2vLq3fDo2/Hp3AAAAAAAAAAAACH/C1hNUCBEYXRhWE1QPD94cGFja2V0IGJlZ2luPSLvu78iIGlkPSJXNU0wTXBDZWhpSHpyZVN6TlRjemtjOWQiPz4gPHg6eG1wbWV0YSB4bWxuczp4PSJhZG9iZTpuczptZXRhLyIgeDp4bXB0az0iQWRvYmUgWE1QIENvcmUgNS4zLWMwMTEgNjYuMTQ1NjYxLCAyMDEyLzAyLzA2LTE0OjU2OjI3ICAgICAgICAiPiA8cmRmOlJERiB4bWxuczpyZGY9Imh0dHA6Ly93d3cudzMub3JnLzE5OTkvMDIvMjItcmRmLXN5bnRheC1ucyMiPiA8cmRmOkRlc2NyaXB0aW9uIHJkZjphYm91dD0iIiB4bWxuczp4bXBNTT0iaHR0cDovL25zLmFkb2JlLmNvbS94YXAvMS4wL21tLyIgeG1sbnM6c3RSZWY9Imh0dHA6Ly9ucy5hZG9iZS5jb20veGFwLzEuMC9zVHlwZS9SZXNvdXJjZVJlZiMiIHhtbG5zOnhtcD0iaHR0cDovL25zLmFkb2JlLmNvbS94YXAvMS4wLyIgeG1wTU06T3JpZ2luYWxEb2N1bWVudElEPSJ4bXAuZGlkOkEyQTRENEZBMEU1NDExRTM4RTdEQzQ2MjIwNERCMUNCIiB4bXBNTTpEb2N1bWVudElEPSJ4bXAuZGlkOjdCMURFOTNCRjhCMzExRTRBNzZERUEwQzkxRUVENzU0IiB4bXBNTTpJbnN0YW5jZUlEPSJ4bXAuaWlkOjdCMURFOTNBRjhCMzExRTRBNzZERUEwQzkxRUVENzU0IiB4bXA6Q3JlYXRvclRvb2w9IkFkb2JlIFBob3Rvc2hvcCBDQyBNYWNpbnRvc2giPiA8eG1wTU06RGVyaXZlZEZyb20gc3RSZWY6aW5zdGFuY2VJRD0ieG1wLmlpZDo1OUUxNjNGOUMwNjkxMUU0QjE1MkIxNEEzMUYzMENFMiIgc3RSZWY6ZG9jdW1lbnRJRD0ieG1wLmRpZDo1OUUxNjNGQUMwNjkxMUU0QjE1MkIxNEEzMUYz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);
+// $body-font-color: #222;
+ $body-font-family: "garamond-premier-pro", serif;
+ $arabic-font-family: 'Noto Serif', serif;
+
+// $body-font-weight: normal;
+// $body-font-style: normal;
+
+// We use this to control font-smoothing
+// $font-smoothing: antialiased;
+
+// We use these to control text direction settings
+// $text-direction: ltr;
+// $opposite-direction: right;
+// $default-float: left;
+
+// We use these to make sure border radius matches unless we want it different.
+// $global-radius: 3px;
+// $global-rounded: 1000px;
+
+// We use these to control inset shadow shiny edges and depressions.
+// $shiny-edge-size: 0 1px 0;
+// $shiny-edge-color: rgba(#fff, .5);
+// $shiny-edge-active-color: rgba(#000, .2);
+
+// Media Query Ranges
+// $small-range: (0em, 40em);
+// $medium-range: (40.063em, 64em);
+// $large-range: (64.063em, 90em);
+// $xlarge-range: (90.063em, 120em);
+// $xxlarge-range: (120.063em);
+
+// $screen: "only screen";
+
+// $landscape: "#{$screen} and (orientation: landscape)";
+// $portrait: "#{$screen} and (orientation: portrait)";
+
+// $small-up: $screen;
+// $small-only: "#{$screen} and (max-width: #{upper-bound($small-range)})";
+
+// $medium-up: "#{$screen} and (min-width:#{lower-bound($medium-range)})";
+// $medium-only: "#{$screen} and (min-width:#{lower-bound($medium-range)}) and (max-width:#{upper-bound($medium-range)})";
+
+// $large-up: "#{$screen} and (min-width:#{lower-bound($large-range)})";
+// $large-only: "#{$screen} and (min-width:#{lower-bound($large-range)}) and (max-width:#{upper-bound($large-range)})";
+
+// $xlarge-up: "#{$screen} and (min-width:#{lower-bound($xlarge-range)})";
+// $xlarge-only: "#{$screen} and (min-width:#{lower-bound($xlarge-range)}) and (max-width:#{upper-bound($xlarge-range)})";
+
+// $xxlarge-up: "#{$screen} and (min-width:#{lower-bound($xxlarge-range)})";
+// $xxlarge-only: "#{$screen} and (min-width:#{lower-bound($xxlarge-range)}) and (max-width:#{upper-bound($xxlarge-range)})";
+
+// Legacy
+// $small: $medium-up;
+// $medium: $medium-up;
+// $large: $large-up;
+
+//We use this as cursors values for enabling the option of having custom cursors in the whole site's stylesheet
+// $cursor-crosshair-value: crosshair;
+// $cursor-default-value: default;
+// $cursor-pointer-value: pointer;
+// $cursor-help-value: help;
+// $cursor-text-value: text;
+
+//
+// TYPOGRAPHY
+//
+
+// $include-html-type-classes: $include-html-classes;
+
+// We use these to control header font styles
+ $header-font-family: "futura-pt", "Arial Narrow", sans-serif;
+// $header-font-weight: normal;
+// $header-font-style: normal;
+ $header-font-color: #372B21;
+ $header-line-height: .95;
+// $header-top-margin: .2rem;
+// $header-bottom-margin: .5rem;
+// $header-text-rendering: optimizeLegibility;
+
+// We use these to control header font sizes
+// $h1-font-size: rem-calc(44);
+// $h2-font-size: rem-calc(37);
+// $h3-font-size: rem-calc(27);
+// $h4-font-size: rem-calc(23);
+// $h5-font-size: rem-calc(18);
+// $h6-font-size: 1rem;
+
+// These control how subheaders are styled.
+// $subheader-line-height: 1.4;
+// $subheader-font-color: scale-color($header-font-color, $lightness: 35%);
+// $subheader-font-weight: 300;
+// $subheader-top-margin: .2rem;
+// $subheader-bottom-margin: .5rem;
+
+// A general <small> styling
+// $small-font-size: 60%;
+// $small-font-color: scale-color($header-font-color, $lightness: 35%);
+
+// We use these to style paragraphs
+// $paragraph-font-family: inherit;
+// $paragraph-font-weight: normal;
+// $paragraph-font-size: 1rem;
+// $paragraph-line-height: 1.6;
+// $paragraph-margin-bottom: rem-calc(20);
+// $paragraph-aside-font-size: rem-calc(14);
+// $paragraph-aside-line-height: 1.35;
+// $paragraph-aside-font-style: italic;
+// $paragraph-text-rendering: optimizeLegibility;
+
+// We use these to style <code> tags
+// $code-color: scale-color($alert-color, $lightness: -27%);
+// $code-font-family: Consolas, 'Liberation Mono', Courier, monospace;
+// $code-font-weight: bold;
+
+// We use these to style anchors
+// $anchor-text-decoration: none;
+// $anchor-font-color: $primary-color;
+ $anchor-font-color-hover: scale-color($primary-color, $lightness: -28%);
+
+// We use these to style the <hr> element
+// $hr-border-width: 1px;
+// $hr-border-style: solid;
+ $hr-border-color: lighten($secondary-color, 30%);
+// $hr-margin: rem-calc(20);
+
+// We use these to style lists
+// $list-style-position: outside;
+// $list-side-margin: 1.1rem;
+// $list-ordered-side-margin: 1.4rem;
+// $list-side-margin-no-bullet: 0;
+// $list-nested-margin: rem-calc(20);
+// $definition-list-header-weight: bold;
+// $definition-list-header-margin-bottom: .3rem;
+// $definition-list-margin-bottom: rem-calc(12);
+
+// We use these to style blockquotes
+// $blockquote-font-color: scale-color($header-font-color, $lightness: 35%);
+// $blockquote-padding: rem-calc(9 20 0 19);
+// $blockquote-border: 1px solid #ddd;
+// $blockquote-cite-font-size: rem-calc(13);
+// $blockquote-cite-font-color: scale-color($header-font-color, $lightness: 23%);
+// $blockquote-cite-link-color: $blockquote-cite-font-color;
+
+// Acronym styles
+// $acronym-underline: 1px dotted #ddd;
+
+// We use these to control padding and margin
+// $microformat-padding: rem-calc(10 12);
+// $microformat-margin: rem-calc(0 0 20 0);
+
+// We use these to control the border styles
+// $microformat-border-width: 1px;
+// $microformat-border-style: solid;
+// $microformat-border-color: #ddd;
+
+// We use these to control full name font styles
+// $microformat-fullname-font-weight: bold;
+// $microformat-fullname-font-size: rem-calc(15);
+
+// We use this to control the summary font styles
+// $microformat-summary-font-weight: bold;
+
+// We use this to control abbr padding
+// $microformat-abbr-padding: rem-calc(0 1);
+
+// We use this to control abbr font styles
+// $microformat-abbr-font-weight: bold;
+// $microformat-abbr-font-decoration: none;
+
+// Accordion
+
+// $include-html-accordion-classes: $include-html-classes;
+
+// $accordion-navigation-padding: rem-calc(16);
+// $accordion-navigation-bg-color: #efefef  ;
+// $accordion-navigation-hover-bg-color: scale-color($accordion-navigation-bg-color, $lightness: -5%);
+// $accordion-navigation-active-bg-color: scale-color($accordion-navigation-bg-color, $lightness: -3%);
+// $accordion-navigation-font-color: #222;
+// $accordion-navigation-font-size: rem-calc(16);
+// $accordion-navigation-font-family: $body-font-family;
+
+// $accordion-content-padding: $column-gutter/2;
+// $accordion-content-active-bg-color: #fff;
+
+// Alert Boxes
+
+// $include-html-alert-classes: $include-html-classes;
+
+// We use this to control alert padding.
+// $alert-padding-top: rem-calc(14);
+// $alert-padding-default-float: $alert-padding-top;
+// $alert-padding-opposite-direction: $alert-padding-top + rem-calc(10);
+// $alert-padding-bottom: $alert-padding-top;
+
+// We use these to control text style.
+// $alert-font-weight: normal;
+// $alert-font-size: rem-calc(13);
+// $alert-font-color: #fff;
+// $alert-font-color-alt: scale-color($secondary-color, $lightness: -66%);
+
+// We use this for close hover effect.
+// $alert-function-factor: -14%;
+
+// We use these to control border styles.
+// $alert-border-style: solid;
+// $alert-border-width: 1px;
+// $alert-border-color: scale-color($primary-color, $lightness: $alert-function-factor);
+// $alert-bottom-margin: rem-calc(20);
+
+// We use these to style the close buttons
+// $alert-close-color: #333;
+// $alert-close-top: 50%;
+// $alert-close-position: rem-calc(5);
+// $alert-close-font-size: rem-calc(22);
+// $alert-close-opacity: 0.3;
+// $alert-close-opacity-hover: 0.5;
+// $alert-close-padding: 9px 6px 4px;
+
+// We use this to control border radius
+// $alert-radius: $global-radius;
+
+// Block Grid
+
+// $include-html-grid-classes: $include-html-classes;
+
+// We use this to control the maximum number of block grid elements per row
+// $block-grid-elements: 12;
+ $block-grid-default-spacing: $column-gutter;
+$align-block-grid-to-grid: false;
+// Enables media queries for block-grid classes. Set to false if writing semantic HTML.
+// $block-grid-media-queries: true;
+
+// Breadcrumbs
+
+// $include-html-nav-classes: $include-html-classes;
+
+// We use this to set the background color for the breadcrumb container.
+// $crumb-bg: scale-color($secondary-color, $lightness: 55%);
+
+// We use these to set the padding around the breadcrumbs.
+// $crumb-padding: rem-calc(9 14 9);
+// $crumb-side-padding: rem-calc(12);
+
+// We use these to control border styles.
+// $crumb-function-factor: -10%;
+// $crumb-border-size: 1px;
+// $crumb-border-style: solid;
+// $crumb-border-color: scale-color($crumb-bg, $lightness: $crumb-function-factor);
+// $crumb-radius: $global-radius;
+
+// We use these to set various text styles for breadcrumbs.
+// $crumb-font-size: rem-calc(11);
+// $crumb-font-color: $primary-color;
+// $crumb-font-color-current: #333;
+// $crumb-font-color-unavailable: #999;
+// $crumb-font-transform: uppercase;
+// $crumb-link-decor: underline;
+
+// We use these to control the slash between breadcrumbs
+// $crumb-slash-color: #aaa;
+// $crumb-slash: "/";
+
+//
+// BUTTONS
+//
+
+// $include-html-button-classes: $include-html-classes;
+
+// We use these to build padding for buttons.
+// $button-tny: rem-calc(10);
+// $button-sml: rem-calc(14);
+// $button-med: rem-calc(16);
+// $button-lrg: rem-calc(18);
+
+// We use this to control the display property.
+// $button-display: inline-block;
+// $button-margin-bottom: rem-calc(20);
+
+// We use these to control button text styles.
+ $button-font-family: $header-font-family;
+// $button-font-color: #fff;
+// $button-font-color-alt: #333;
+// $button-font-tny: rem-calc(11);
+// $button-font-sml: rem-calc(13);
+// $button-font-med: rem-calc(16);
+// $button-font-lrg: rem-calc(20);
+// $button-font-weight: normal;
+// $button-font-align: center;
+
+// We use these to control various hover effects.
+// $button-function-factor: 5%;
+
+// We use these to control button border styles.
+// $button-border-width: 1px;
+// $button-border-style: solid;
+
+// We use this to set the default radius used throughout the core.
+// $button-radius: $global-radius;
+// $button-round: $global-rounded;
+
+// We use this to set default opacity for disabled buttons.
+// $button-disabled-opacity: 0.7;
+
+// Button Groups
+
+// $include-html-button-classes: $include-html-classes;
+
+// Sets the margin for the right side by default, and the left margin if right-to-left direction is used
+// $button-bar-margin-opposite: rem-calc(10);
+// $button-group-border-width: 1px;
+
+// Clearing
+
+// $include-html-clearing-classes: $include-html-classes;
+
+// We use these to set the background colors for parts of Clearing.
+// $clearing-bg: #333;
+// $clearing-caption-bg: $clearing-bg;
+// $clearing-carousel-bg: rgba (51,51,51,0.8);
+// $clearing-img-bg: $clearing-bg;
+
+// We use these to style the close button
+// $clearing-close-color: #ccc;
+// $clearing-close-size: 30px;
+
+// We use these to style the arrows
+// $clearing-arrow-size: 12px;
+// $clearing-arrow-color: $clearing-close-color;
+
+// We use these to style captions
+// $clearing-caption-font-color: #ccc;
+// $clearing-caption-font-size: 0.875em;
+// $clearing-caption-padding: 10px 30px 20px;
+
+// We use these to make the image and carousel height and style
+// $clearing-active-img-height: 85%;
+// $clearing-carousel-height: 120px;
+// $clearing-carousel-thumb-width: 120px;
+// $clearing-carousel-thumb-active-border: 1px solid rgb(255,255,255);
+
+// Dropdown
+
+// $include-html-dropdown-classes: $include-html-classes;
+
+// We use these to controls height and width styles.
+// $f-dropdown-max-width: 200px;
+// $f-dropdown-height: auto;
+// $f-dropdown-max-height: none;
+// $f-dropdown-margin-top: 2px;
+
+// We use this to control the background color
+// $f-dropdown-bg: #fff;
+
+// We use this to set the border styles for dropdowns.
+// $f-dropdown-border-style: solid;
+// $f-dropdown-border-width: 1px;
+// $f-dropdown-border-color: scale-color(#fff, $lightness: -20%);
+
+// We use these to style the triangle pip.
+// $f-dropdown-triangle-size: 6px;
+ $f-dropdown-triangle-color: $primary-color;
+// $f-dropdown-triangle-side-offset: 10px;
+
+// We use these to control styles for the list elements.
+// $f-dropdown-list-style: none;
+// $f-dropdown-font-color: #555;
+// $f-dropdown-font-size: rem-calc(14);
+// $f-dropdown-list-padding: rem-calc(5, 10);
+// $f-dropdown-line-height: rem-calc(18);
+// $f-dropdown-list-hover-bg: #eeeeee  ;
+// $dropdown-mobile-default-float: 0;
+
+// We use this to control the styles for when the dropdown has custom content.
+// $f-dropdown-content-padding: rem-calc(20);
+
+// Dropdown Buttons
+
+// $include-html-button-classes: $include-html-classes;
+
+// We use these to set the color of the pip in dropdown buttons
+ $dropdown-button-pip-color: #333;
+// $dropdown-button-pip-color-alt: #333;
+
+ $button-pip-tny: rem-calc(4);
+ $button-pip-sml: rem-calc(7);
+ $button-pip-med: rem-calc(9);
+ $button-pip-lrg: rem-calc(11);
+
+// We use these to style tiny dropdown buttons
+// $dropdown-button-padding-tny: $button-pip-tny * 4;
+// $dropdown-button-pip-size-tny: $button-pip-tny;
+// $dropdown-button-pip-opposite-tny: $button-pip-tny * 3;
+// $dropdown-button-pip-top-tny: -$button-pip-tny / 2 + rem-calc(1);
+
+// We use these to style small dropdown buttons
+// $dropdown-button-padding-sml: $button-pip-sml * 7;
+// $dropdown-button-pip-size-sml: $button-pip-sml;
+// $dropdown-button-pip-opposite-sml: $button-pip-sml * 3;
+// $dropdown-button-pip-top-sml: -$button-pip-sml / 2 + rem-calc(1);
+
+// We use these to style medium dropdown buttons
+// $dropdown-button-padding-med: $button-pip-med * 6 + rem-calc(3);
+// $dropdown-button-pip-size-med: $button-pip-med - rem-calc(3);
+// $dropdown-button-pip-opposite-med: $button-pip-med * 2.5;
+// $dropdown-button-pip-top-med: -$button-pip-med / 2 + rem-calc(2);
+
+// We use these to style large dropdown buttons
+// $dropdown-button-padding-lrg: $button-pip-lrg * 5 + rem-calc(3);
+// $dropdown-button-pip-size-lrg: $button-pip-lrg - rem-calc(6);
+// $dropdown-button-pip-opposite-lrg: $button-pip-lrg * 2.5;
+// $dropdown-button-pip-top-lrg: -$button-pip-lrg / 2 + rem-calc(3);
+
+// Flex Video
+
+// $include-html-media-classes: $include-html-classes;
+
+// We use these to control video container padding and margins
+// $flex-video-padding-top: rem-calc(25);
+// $flex-video-padding-bottom: 67.5%;
+// $flex-video-margin-bottom: rem-calc(16);
+
+// We use this to control widescreen bottom padding
+// $flex-video-widescreen-padding-bottom: 57.25%;
+
+// Forms
+
+// $include-html-form-classes: $include-html-classes;
+
+// We use this to set the base for lots of form spacing and positioning styles
+// $form-spacing: rem-calc(16);
+
+// We use these to style the labels in different ways
+// $form-label-pointer: pointer;
+// $form-label-font-size: rem-calc(14);
+// $form-label-font-weight: normal;
+// $form-label-line-height: 1.5;
+// $form-label-font-color: scale-color(#000, $lightness: 30%);
+// $form-label-bottom-margin: 0;
+// $input-font-family: inherit;
+// $input-font-color: rgba(0,0,0,0.75);
+// $input-font-size: rem-calc(14);
+// $input-bg-color: #fff;
+// $input-focus-bg-color: scale-color(#fff, $lightness: -2%);
+// $input-border-color: scale-color(#fff, $lightness: -20%);
+// $input-focus-border-color: scale-color(#fff, $lightness: -40%);
+// $input-border-style: solid;
+// $input-border-width: 1px;
+// $input-border-radius: $global-radius;
+// $input-disabled-bg: #ddd;
+// $input-box-shadow: inset 0 1px 2px rgba(0,0,0,0.1);
+// $input-include-glowing-effect: true;
+
+// We use these to style the fieldset border and spacing.
+// $fieldset-border-style: solid;
+// $fieldset-border-width: 1px;
+// $fieldset-border-color: #ddd;
+// $fieldset-padding: rem-calc(20);
+// $fieldset-margin: rem-calc(18 0);
+
+// We use these to style the legends when you use them
+// $legend-bg: #fff;
+// $legend-font-weight: bold;
+// $legend-padding: rem-calc(0 3);
+
+// We use these to style the prefix and postfix input elements
+// $input-prefix-bg: scale-color(#fff, $lightness: -5%);
+// $input-prefix-border-color: scale-color(#fff, $lightness: -20%);
+// $input-prefix-border-size: 1px;
+// $input-prefix-border-type: solid;
+// $input-prefix-overflow: hidden;
+// $input-prefix-font-color: #333;
+// $input-prefix-font-color-alt: #fff;
+
+// We use these to style the error states for inputs and labels
+// $input-error-message-padding: rem-calc(6 9 9);
+// $input-error-message-top: -1px;
+// $input-error-message-font-size: rem-calc(12);
+// $input-error-message-font-weight: normal;
+// $input-error-message-font-style: italic;
+// $input-error-message-font-color: #fff;
+// $input-error-message-font-color-alt: #333;
+
+// We use this to style the glowing effect of inputs when focused
+// $glowing-effect-fade-time: 0.45s;
+// $glowing-effect-color: $input-focus-border-color;
+
+// Select variables
+// $select-bg-color: #fafafa;
+
+// Inline Lists
+
+// $include-html-inline-list-classes: $include-html-classes;
+
+// We use this to control the margins and padding of the inline list.
+// $inline-list-top-margin: 0;
+// $inline-list-opposite-margin: 0;
+// $inline-list-bottom-margin: rem-calc(17);
+// $inline-list-default-float-margin: rem-calc(-22);
+
+// $inline-list-padding: 0;
+
+// We use this to control the overflow of the inline list.
+// $inline-list-overflow: hidden;
+
+// We use this to control the list items
+// $inline-list-display: block;
+
+// We use this to control any elments within list items
+// $inline-list-children-display: block;
+
+// Joyride
+
+// $include-html-joyride-classes: $include-html-classes;
+
+// Controlling default Joyride styles
+// $joyride-tip-bg: #333;
+// $joyride-tip-default-width: 300px;
+// $joyride-tip-padding: rem-calc(18 20 24);
+// $joyride-tip-border: solid 1px #555;
+// $joyride-tip-radius: 4px;
+// $joyride-tip-position-offset: 22px;
+
+// Here, we're setting the tip dont styles
+// $joyride-tip-font-color: #fff;
+// $joyride-tip-font-size: rem-calc(14);
+// $joyride-tip-header-weight: bold;
+
+// This changes the nub size
+// $joyride-tip-nub-size: 10px;
+
+// This adjusts the styles for the timer when its enabled
+// $joyride-tip-timer-width: 50px;
+// $joyride-tip-timer-height: 3px;
+// $joyride-tip-timer-color: #666;
+
+// This changes up the styles for the close button
+// $joyride-tip-close-color: #777;
+// $joyride-tip-close-size: 24px;
+// $joyride-tip-close-weight: normal;
+
+// When Joyride is filling the screen, we use this style for the bg
+// $joyride-screenfill: rgba(0,0,0,0.5);
+
+// Keystrokes
+
+// $include-html-keystroke-classes: $include-html-classes;
+
+// We use these to control text styles.
+// $keystroke-font: "Consolas", "Menlo", "Courier", monospace;
+// $keystroke-font-size: rem-calc(14);
+// $keystroke-font-color: #222;
+// $keystroke-font-color-alt: #fff;
+// $keystroke-function-factor: -7%;
+
+// We use this to control keystroke padding.
+// $keystroke-padding: rem-calc(2 4 0);
+
+// We use these to control background and border styles.
+// $keystroke-bg: scale-color(#fff, $lightness: $keystroke-function-factor);
+// $keystroke-border-style: solid;
+// $keystroke-border-width: 1px;
+// $keystroke-border-color: scale-color($keystroke-bg, $lightness: $keystroke-function-factor);
+// $keystroke-radius: $global-radius;
+
+// Labels
+
+// $include-html-label-classes: $include-html-classes;
+
+// We use these to style the labels
+// $label-padding: rem-calc(4 8 6);
+// $label-radius: $global-radius;
+
+// We use these to style the label text
+// $label-font-sizing: rem-calc(11);
+// $label-font-weight: normal;
+// $label-font-color: #333;
+// $label-font-color-alt: #fff;
+// $label-font-family: $body-font-family;
+
+// Magellan
+
+// $include-html-magellan-classes: $include-html-classes;
+
+// $magellan-bg: #fff;
+// $magellan-padding: 10px;
+
+// Off-canvas
+
+   $tabbar-bg: #fff;
+// $tabbar-height: rem-calc(45);
+// $tabbar-line-height: $tabbar-height;
+ $tabbar-color: #fff;
+// $tabbar-middle-padding: 0 rem-calc(10);
+
+// Off Canvas Divider Styles
+ $tabbar-right-section-border: none;
+ $tabbar-left-section-border: none;
+
+// Off Canvas Tab Bar Headers
+// $tabbar-header-color: #FFF;
+// $tabbar-header-weight: bold;
+// $tabbar-header-line-height: $tabbar-height;
+// $tabbar-header-margin: 0;
+
+// Off Canvas Menu Variables
+// $off-canvas-width: 250px;
+   $off-canvas-bg: #f8f8f8 !default;
+
+$tabbar-right-section-border: none;
+$tabbar-left-section-border: none;
+
+// Off Canvas Menu List Variables
+   $off-canvas-label-padding: rem-calc(10, 15);
+   $off-canvas-label-color: #4f4f4f;
+// $off-canvas-label-text-transform: uppercase;
+   $off-canvas-label-font-weight: none;
+   $off-canvas-label-bg: $lightGray;
+   $off-canvas-label-border-top: none; 
+   $off-canvas-label-border-bottom: none;
+// $off-canvas-label-margin: rem-calc(10, 15);
+// $off-canvas-link-padding: rem-calc(10, 15);
+   $off-canvas-link-color: #4b4b4b;
+   $off-canvas-link-border-bottom: none;
+
+// Off Canvas Menu Icon Variables
+   $tabbar-menu-icon-color: $lightGray;
+// $tabbar-menu-icon-hover: scale-color($tabbar-menu-icon-color, $lightness: -30%);
+$off-canvas-overlay-box-shadow: none;
+// $tabbar-menu-icon-text-indent: rem-calc(35);
+// $tabbar-menu-icon-width: $tabbar-height;
+// $tabbar-menu-icon-height: $tabbar-height;
+// $tabbar-menu-icon-line-height: rem-calc(33);
+// $tabbar-menu-icon-padding: 0;
+
+// $tabbar-hamburger-icon-width: rem-calc(16);
+// $tabbar-hamburger-icon-left: rem-calc(13);
+// $tabbar-hamburger-icon-top: rem-calc(5);
+
+// Off Canvas Back-Link Overlay
+// $off-canvas-overlay-transition: background 300ms ease;
+// $off-canvas-overlay-cursor: pointer;
+   $off-canvas-overlay-box-shadow: -1px 0 4px rgba(#000, 0.5), 4px 0 4px rgba(#000, 0.5);
+// $off-canvas-overlay-background: rgba(#FFF, 0.2);
+// $off-canvas-overlay-background-hover: rgba(#FFF, 0.05);
+
+// Transition Variables
+// $menu-slide: "transform 500ms ease";
+
+// Orbit
+
+// $include-html-orbit-classes: $include-html-classes;
+
+// We use these to control the caption styles
+// $orbit-container-bg: none;
+// $orbit-caption-bg: rgba(51,51,51, 0.8);
+// $orbit-caption-font-color: #fff;
+// $orbit-caption-font-size: rem-calc(14);
+// $orbit-caption-position: "bottom"; // Supported values: "bottom", "under"
+// $orbit-caption-padding: rem-calc(10 14);
+// $orbit-caption-height: auto;
+
+// We use these to control the left/right nav styles
+// $orbit-nav-bg: none;
+// $orbit-nav-bg-hover: rgba(0,0,0,0.3);
+// $orbit-nav-arrow-color: #fff;
+// $orbit-nav-arrow-color-hover: #fff;
+
+// We use these to control the timer styles
+// $orbit-timer-bg: rgba(255,255,255,0.3);
+// $orbit-timer-show-progress-bar: true;
+
+// We use these to control the bullet nav styles
+// $orbit-bullet-nav-color: #ccc;
+// $orbit-bullet-nav-color-active: #999;
+// $orbit-bullet-radius: rem-calc(9);
+
+// We use these to controls the style of slide numbers
+// $orbit-slide-number-bg: rgba(0,0,0,0);
+// $orbit-slide-number-font-color: #fff;
+// $orbit-slide-number-padding: rem-calc(5);
+
+// Graceful Loading Wrapper and preloader
+// $wrapper-class: "slideshow-wrapper";
+// $preloader-class: "preloader";
+
+// Pagination
+
+// $include-html-nav-classes: $include-html-classes;
+
+// We use these to control the pagination container
+// $pagination-height: rem-calc(24);
+// $pagination-margin: rem-calc(-5);
+
+// We use these to set the list-item properties
+// $pagination-li-float: $default-float;
+// $pagination-li-height: rem-calc(24);
+// $pagination-li-font-color: #222;
+// $pagination-li-font-size: rem-calc(14);
+// $pagination-li-margin: rem-calc(5);
+
+// We use these for the pagination anchor links
+// $pagination-link-pad: rem-calc(1 10 1);
+// $pagination-link-font-color: #999;
+// $pagination-link-active-bg: scale-color(#fff, $lightness: -10%);
+
+// We use these for disabled anchor links
+// $pagination-link-unavailable-cursor: default;
+// $pagination-link-unavailable-font-color: #999;
+// $pagination-link-unavailable-bg-active: transparent;
+
+// We use these for currently selected anchor links
+// $pagination-link-current-background: $primary-color;
+// $pagination-link-current-font-color: #fff;
+// $pagination-link-current-font-weight: bold;
+// $pagination-link-current-cursor: default;
+// $pagination-link-current-active-bg: $primary-color;
+
+// Panels
+
+// $include-html-panel-classes: $include-html-classes;
+
+// We use these to control the background and border styles
+// $panel-bg: scale-color(#fff, $lightness: -5%);
+// $panel-border-style: solid;
+// $panel-border-size: 1px;
+
+// We use this % to control how much we darken things on hover
+// $panel-function-factor: -11%;
+// $panel-border-color: scale-color($panel-bg, $lightness: $panel-function-factor);
+
+// We use these to set default inner padding and bottom margin
+// $panel-margin-bottom: rem-calc(20);
+// $panel-padding: rem-calc(20);
+
+// We use these to set default font colors
+// $panel-font-color: #333;
+// $panel-font-color-alt: #fff;
+
+// $panel-header-adjust: true;
+// $callout-panel-link-color: $primary-color;
+
+// Pricing Tables
+
+// $include-html-pricing-classes: $include-html-classes;
+
+// We use this to control the border color
+// $price-table-border: solid 1px #ddd;
+
+// We use this to control the bottom margin of the pricing table
+// $price-table-margin-bottom: rem-calc(20);
+
+// We use these to control the title styles
+// $price-title-bg: #333;
+// $price-title-padding: rem-calc(15 20);
+// $price-title-align: center;
+// $price-title-color: #eee;
+// $price-title-weight: normal;
+// $price-title-size: rem-calc(16);
+// $price-title-font-family: $body-font-family;
+
+// We use these to control the price styles
+// $price-money-bg: #f6f6f6  ;
+// $price-money-padding: rem-calc(15 20);
+// $price-money-align: center;
+// $price-money-color: #333;
+// $price-money-weight: normal;
+// $price-money-size: rem-calc(32);
+// $price-money-font-family: $body-font-family;
+
+
+// We use these to control the description styles
+// $price-bg: #fff;
+// $price-desc-color: #777;
+// $price-desc-padding: rem-calc(15);
+// $price-desc-align: center;
+// $price-desc-font-size: rem-calc(12);
+// $price-desc-weight: normal;
+// $price-desc-line-height: 1.4;
+// $price-desc-bottom-border: dotted 1px #ddd;
+
+// We use these to control the list item styles
+// $price-item-color: #333;
+// $price-item-padding: rem-calc(15);
+// $price-item-align: center;
+// $price-item-font-size: rem-calc(14);
+// $price-item-weight: normal;
+// $price-item-bottom-border: dotted 1px #ddd;
+
+// We use these to control the CTA area styles
+// $price-cta-bg: #fff;
+// $price-cta-align: center;
+// $price-cta-padding: rem-calc(20 20 0);
+
+// Progress Meters
+
+// $include-html-media-classes: $include-html-classes;
+
+// We use this to se the prog bar height
+// $progress-bar-height: rem-calc(25);
+// $progress-bar-color: #f6f6f6  ;
+
+// We use these to control the border styles
+// $progress-bar-border-color: scale-color(#fff, $lightness: -20%);
+// $progress-bar-border-size: 1px;
+// $progress-bar-border-style: solid;
+// $progress-bar-border-radius: $global-radius;
+
+// We use these to control the margin & padding
+// $progress-bar-pad: rem-calc(2);
+// $progress-bar-margin-bottom: rem-calc(10);
+
+// We use these to set the meter colors
+// $progress-meter-color: $primary-color;
+// $progress-meter-secondary-color: $secondary-color;
+// $progress-meter-success-color: $success-color;
+// $progress-meter-alert-color: $alert-color;
+
+// Reveal
+
+// $include-html-reveal-classes: $include-html-classes;
+
+// We use these to control the style of the reveal overlay.
+// $reveal-overlay-bg: rgba(#000, .45);
+// $reveal-overlay-bg-old: #000;
+
+// We use these to control the style of the modal itself.
+ $reveal-modal-bg: #f3ece3;
+// $reveal-position-top: 50px;
+// $reveal-default-width: 80%;
+// $reveal-modal-padding: rem-calc(20);
+// $reveal-box-shadow: 0 0 10px rgba(#000,.4);
+
+// We use these to style the reveal close button
+// $reveal-close-font-size: rem-calc(22);
+// $reveal-close-top: rem-calc(8);
+// $reveal-close-side: rem-calc(11);
+// $reveal-close-color: #aaa;
+// $reveal-close-weight: bold;
+
+// We use these to control the modal border
+// $reveal-border-style: solid;
+// $reveal-border-width: 1px;
+// $reveal-border-color: #666;
+
+// $reveal-modal-class: "reveal-modal";
+// $close-reveal-modal-class: "close-reveal-modal";
+
+// Side Nav
+
+// $include-html-nav-classes: $include-html-classes;
+
+// We use this to control padding.
+ $side-nav-padding: rem-calc(0 0 0 0);
+
+// We use these to control list styles.
+// $side-nav-list-type: none;
+// $side-nav-list-position: inside;
+ $side-nav-list-margin: rem-calc(0 0 0 0);
+
+// We use these to control link styles.
+ $side-nav-link-color: $lightGray;
+// $side-nav-link-color-active: scale-color($side-nav-link-color, $lightness: 30%);
+// $side-nav-link-color-hover: scale-color($side-nav-link-color, $lightness: 30%);
+ $side-nav-font-size: rem-calc(16);
+// $side-nav-font-weight: normal;
+ $side-nav-font-family: $header-font-family;
+// $side-nav-active-font-family: $side-nav-font-family;
+
+
+
+// We use these to control border styles
+// $side-nav-divider-size: 1px;
+// $side-nav-divider-style: solid;
+// $side-nav-divider-color: scale-color(#fff, $lightness: -10%);
+
+// Split Buttons
+
+// $include-html-button-classes: $include-html-classes;
+
+// We use these to control different shared styles for Split Buttons
+// $split-button-function-factor: 10%;
+// $split-button-pip-color: #fff;
+// $split-button-pip-color-alt: #333;
+// $split-button-active-bg-tint: rgba(0,0,0,0.1);
+
+// We use these to control tiny split buttons
+// $split-button-padding-tny: $button-pip-tny * 8;
+// $split-button-span-width-tny: $button-pip-tny * 6;
+// $split-button-pip-size-tny: $button-pip-tny;
+// $split-button-pip-top-tny: $button-pip-tny * 2;
+// $split-button-pip-default-float-tny: rem-calc(-6);
+
+// We use these to control small split buttons
+// $split-button-padding-sml: $button-pip-sml * 10;
+// $split-button-span-width-sml: $button-pip-sml * 6;
+// $split-button-pip-size-sml: $button-pip-sml;
+// $split-button-pip-top-sml: $button-pip-sml * 1.5;
+// $split-button-pip-default-float-sml: rem-calc(-6);
+
+// We use these to control medium split buttons
+// $split-button-padding-med: $button-pip-med * 9;
+// $split-button-span-width-med: $button-pip-med * 5.5;
+// $split-button-pip-size-med: $button-pip-med - rem-calc(3);
+// $split-button-pip-top-med: $button-pip-med * 1.5;
+// $split-button-pip-default-float-med: rem-calc(-6);
+
+// We use these to control large split buttons
+// $split-button-padding-lrg: $button-pip-lrg * 8;
+// $split-button-span-width-lrg: $button-pip-lrg * 5;
+// $split-button-pip-size-lrg: $button-pip-lrg - rem-calc(6);
+// $split-button-pip-top-lrg: $button-pip-lrg + rem-calc(5);
+// $split-button-pip-default-float-lrg: rem-calc(-6);
+
+// Sub Nav
+
+// $include-html-nav-classes: $include-html-classes;
+
+// We use these to control margin and padding
+// $sub-nav-list-margin: rem-calc(-4 0 18);
+// $sub-nav-list-padding-top: rem-calc(4);
+
+// We use this to control the definition
+// $sub-nav-font-family: $body-font-family;
+// $sub-nav-font-size: rem-calc(14);
+// $sub-nav-font-color: #999;
+// $sub-nav-font-weight: normal;
+// $sub-nav-text-decoration: none;
+// $sub-nav-border-radius: 3px;
+// $sub-nav-font-color-hover: scale-color($sub-nav-font-color, $lightness: -25%);
+
+
+// We use these to control the active item styles
+
+// $sub-nav-active-font-weight: normal;
+// $sub-nav-active-bg: $primary-color;
+// $sub-nav-active-bg-hover: scale-color($sub-nav-active-bg, $lightness: -14%);
+// $sub-nav-active-color: #fff;
+// $sub-nav-active-padding: rem-calc(3 16);
+// $sub-nav-active-cursor: default;
+
+// $sub-nav-item-divider: "";
+// $sub-nav-item-divider-margin: rem-calc(12);
+
+//
+// SWITCH
+//
+
+// $include-html-form-classes: $include-html-classes;
+
+// Controlling border styles and background colors for the switch container
+// $switch-border-color: scale-color(#fff, $lightness: -20%);
+// $switch-border-style: solid;
+// $switch-border-width: 1px;
+// $switch-bg: #fff;
+
+// We use these to control the switch heights for our default classes
+// $switch-height-tny: 22px;
+// $switch-height-sml: 28px;
+// $switch-height-med: 36px;
+// $switch-height-lrg: 44px;
+// $switch-bottom-margin: rem-calc(20);
+
+// We use these to control default font sizes for our classes.
+// $switch-font-size-tny: 11px;
+// $switch-font-size-sml: 12px;
+// $switch-font-size-med: 14px;
+// $switch-font-size-lrg: 17px;
+// $switch-label-side-padding: 6px;
+
+// We use these to style the switch-paddle
+// $switch-paddle-bg: #fff;
+// $switch-paddle-fade-to-color: scale-color($switch-paddle-bg, $lightness: -10%);
+// $switch-paddle-border-color: scale-color($switch-paddle-bg, $lightness: -35%);
+// $switch-paddle-border-width: 1px;
+// $switch-paddle-border-style: solid;
+// $switch-paddle-transition-speed: .1s;
+// $switch-paddle-transition-ease: ease-out;
+// $switch-positive-color: scale-color($success-color, $lightness: 94%);
+// $switch-negative-color: #f5f5f5;
+
+// Outline Style for tabbing through switches
+// $switch-label-outline: 1px dotted #888;
+
+// Tables
+
+// $include-html-table-classes: $include-html-classes;
+
+// These control the background color for the table and even rows
+// $table-bg: #fff;
+// $table-even-row-bg: #f9f9f9  ;
+
+// These control the table cell border style
+// $table-border-style: solid;
+// $table-border-size: 1px;
+// $table-border-color: #ddd;
+
+// These control the table head styles
+// $table-head-bg: #f5f5f5  ;
+// $table-head-font-size: rem-calc(14);
+// $table-head-font-color: #222;
+// $table-head-font-weight: bold;
+// $table-head-padding: rem-calc(8 10 10);
+
+// These control the row padding and font styles
+// $table-row-padding: rem-calc(9 10);
+// $table-row-font-size: rem-calc(14);
+// $table-row-font-color: #222;
+// $table-line-height: rem-calc(18);
+
+// These are for controlling the display and margin of tables
+// $table-display: table-cell;
+// $table-margin-bottom: rem-calc(20);
+
+//
+// TABS
+//
+
+// $include-html-tabs-classes: $include-html-classes;
+
+// $tabs-navigation-padding: rem-calc(16);
+// $tabs-navigation-bg-color: #efefef  ;
+// $tabs-navigation-active-bg-color: #fff;
+// $tabs-navigation-hover-bg-color: scale-color($tabs-navigation-bg-color, $lightness: -6%);
+// $tabs-navigation-font-color: #222;
+// $tabs-navigation-font-size: rem-calc(16);
+// $tabs-navigation-font-family: $body-font-family;
+
+// $tabs-content-margin-bottom: rem-calc(24);
+// $tabs-content-padding: $column-gutter/2;
+
+// $tabs-vertical-navigation-margin-bottom: 1.25rem;
+
+//
+// THUMBNAILS
+//
+
+// $include-html-media-classes: $include-html-classes;
+
+// We use these to control border styles
+// $thumb-border-style: solid;
+// $thumb-border-width: 4px;
+// $thumb-border-color: #fff;
+// $thumb-box-shadow: 0 0 0 1px rgba(#000,.2);
+// $thumb-box-shadow-hover: 0 0 6px 1px rgba($primary-color,0.5);
+
+// Radius and transition speed for thumbs
+// $thumb-radius: $global-radius;
+// $thumb-transition-speed: 200ms;
+
+//
+// TOOLTIPS
+//
+
+// $include-html-tooltip-classes: $include-html-classes;
+
+// $has-tip-border-bottom: dotted 1px #ccc;
+// $has-tip-font-weight: bold;
+// $has-tip-font-color: #333;
+// $has-tip-border-bottom-hover: dotted 1px scale-color($primary-color, $lightness: -55%);
+// $has-tip-font-color-hover: $primary-color;
+// $has-tip-cursor-type: help;
+
+// $tooltip-padding: rem-calc(12);
+// $tooltip-bg: #333;
+// $tooltip-font-size: rem-calc(14);
+// $tooltip-font-weight: normal;
+// $tooltip-font-color: #fff;
+// $tooltip-line-height: 1.3;
+// $tooltip-close-font-size: rem-calc(10);
+// $tooltip-close-font-weight: normal;
+// $tooltip-close-font-color: #777;
+// $tooltip-font-size-sml: rem-calc(14);
+// $tooltip-radius: $global-radius;
+// $tooltip-rounded: $global-rounded;
+// $tooltip-pip-size: 5px;
+
+//
+// TOP BAR
+//
+
+// $include-html-top-bar-classes: $include-html-classes;
+
+// Background color for the top bar
+// $topbar-bg-color: #fff;
+
+
+$topbar-bg-color: rgba(0,0,0,0);
+$topbar-bg: $topbar-bg-color;
+
+// Height and margin
+ $topbar-height: rem-calc(60);
+// $topbar-margin-bottom: 0;
+
+// Controlling the styles for the title in the top bar
+// $topbar-title-weight: normal;
+// $topbar-title-font-size: rem-calc(17);
+
+// Style the top bar dropdown elements
+ $topbar-dropdown-bg: none;
+ $topbar-dropdown-link-color: lighten($primary-color, 30);
+ $topbar-dropdown-link-bg: $topbar-bg;
+// $topbar-dropdown-link-weight: normal;
+// $topbar-dropdown-toggle-size: 5px;
+ $topbar-dropdown-toggle-color: #eee;
+// $topbar-dropdown-toggle-alpha: 0.4;
+
+// Set the link colors and styles for top-level nav
+ $topbar-link-color: white;
+ $topbar-link-color-hover: lighten($primary-color,30);
+ $topbar-link-color-active: lighten($primary-color, 40);
+ $topbar-link-color-active-hover: lighten($primary-color, 15);
+// $topbar-link-weight: normal;
+ $topbar-link-font-size: rem-calc(13);
+// $topbar-link-hover-lightness: -10%; // Darken by 10%
+ $topbar-link-bg-hover: rgba($topbar-base-color, 0.3);
+ $topbar-link-bg-active: rgba($topbar-bg, 0.4);
+ $topbar-link-bg-active-hover: rgba($topbar-bg, 0.5);
+ $topbar-link-font-family: $header-font-family;
+ $topbar-link-text-transform: uppercase;
+// $topbar-link-padding: $topbar-height / 3;
+
+// $topbar-button-font-size: 0.75rem;
+// $topbar-button-top: 7px;
+
+// $topbar-dropdown-label-color: #777;
+// $topbar-dropdown-label-text-transform: uppercase;
+// $topbar-dropdown-label-font-weight: bold;
+// $topbar-dropdown-label-font-size: rem-calc(10);
+ $topbar-dropdown-label-bg: none;
+
+// Top menu icon styles
+// $topbar-menu-link-transform: uppercase;
+// $topbar-menu-link-font-size: rem-calc(13);
+// $topbar-menu-link-weight: bold;
+// $topbar-menu-link-color: #fff;
+// $topbar-menu-icon-color: #fff;
+// $topbar-menu-link-color-toggled: #888;
+// $topbar-menu-icon-color-toggled: #888;
+
+// Transitions and breakpoint styles
+// $topbar-transition-speed: 300ms;
+// Using rem-calc for the below breakpoint causes issues with top bar
+// $topbar-breakpoint: #{upper-bound($medium-range)}; // Change to 9999px for always mobile layout
+// $topbar-media-query: "only screen and (min-width: #{upper-bound($medium-range)})";
+
+// Divider Styles
+// $topbar-divider-border-bottom: solid 1px  scale-color($topbar-bg-color, $lightness: 13%);
+// $topbar-divider-border-top: solid 1px scale-color($topbar-bg-color, $lightness: -50%);
+
+// Sticky Class
+// $topbar-sticky-class: ".sticky";
+// $topbar-arrows: true; //Set false to remove the triangle icon from the menu item
+
+//
+// VISIBILITY CLASSES
+//
+
+// $include-html-visibility-classes: $include-html-classes;
+// $include-table-visibility-classes: true;
+// $include-legacy-visibility-classes: true;
+
+//
+// RANGE SLIDER
+//
+
+// $include-html-range-slider-classes: $include-html-classes;
+
+// These variabels define the slider bar styles
+// $range-slider-bar-width: 100%;
+// $range-slider-bar-height: rem-calc(16);
+
+// $range-slider-bar-border-width: 1px;
+// $range-slider-bar-border-style: solid;
+// $range-slider-bar-border-color: #ddd;
+// $range-slider-radius: $global-radius;
+// $range-slider-round: $global-rounded;
+// $range-slider-bar-bg-color: #fafafa;
+
+// Vertical bar styles
+// $range-slider-vertical-bar-width: rem-calc(16);
+// $range-slider-vertical-bar-height: rem-calc(200);
+
+// These variabels define the slider handle styles
+// $range-slider-handle-width: rem-calc(32);
+// $range-slider-handle-height: rem-calc(22);
+// $range-slider-handle-position-top: rem-calc(-5);
+// $range-slider-handle-bg-color: $primary-color;
+// $range-slider-handle-border-width: 1px;
+// $range-slider-handle-border-style: solid;
+// $range-slider-handle-border-color: none;
+// $range-slider-handle-radius: $global-radius;
+// $range-slider-handle-round: $global-rounded;
+// $range-slider-handle-bg-hover-color: scale-color($primary-color, $lightness: -12%);
+// $range-slider-handle-cursor: pointer;

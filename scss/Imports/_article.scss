@@ -1,0 +1,158 @@
+.Article {
+
+    .breadcrumb{
+     @media #{$large-up}{
+        margin-left: 60px;
+      }
+    }
+    article.translated{
+        padding: $column-gutter/2 0;
+        @media #{$large-up}{
+            padding-top: 0;
+        }
+    }
+
+    .compilation-title{
+        padding: $column-gutter 0;
+        margin: 0;
+    }
+
+    .main{
+        padding-top: $column-gutter/2;
+    }
+    .nav-container {
+        background-size: cover;
+        background-repeat: no-repeat;
+        //background-attachment: fixed;
+   
+    }
+    .top-bar {
+        background: none;
+
+    }
+
+    .top-bar .name h1 a, .top-bar .name h2 a, .top-bar .name h3 a, .top-bar .name h4 a, .top-bar .name p a, .top-bar .name span a{
+        @media #{$large-up}{
+            padding: 0 $article-poetry-padding/2;
+        }
+    }
+    .nav-screen {
+        background-color: rgba($topbar-base-color, 0.67);
+    }
+
+    .row {
+        max-width: $article-row-width;
+    }
+    .contain-to-grid .top-bar {
+        max-width: $article-row-width;
+    }
+    #poetry {
+        p {
+            line-height: 1.2em;
+            margin-bottom: 0;
+        }
+        hr {
+            border-color: rgba(152, 143, 120, 0.59);
+            margin-top: 1rem;
+            margin-bottom: 1rem;
+        }
+        .author {
+            color: $darkGray;
+            margin-top: .25em;
+            text-transform: uppercase;
+            font-size: rem-calc(14);
+            line-height: auto;
+            margin-bottom: 0px;
+            font-family: $header-font-family;
+        }
+        .poem-info {
+            line-height: 1;
+            margin-bottom: $column-gutter;
+        }
+        .poem {
+        	@media #{$large-up} {
+            	padding: 0 $article-poetry-padding/2;
+            	//padding-right: $column-gutter;
+            }
+            &.ar,&.ku{
+                .poem-content{
+                    
+                    font-family: $arabic-font-family;
+
+                    h1,h2,h3,h4,h5,h6 {
+                        font-family: $arabic-font-family;
+                    }
+
+                    font-size: rem-calc(17);
+                }
+            }
+
+
+       
+        }
+        #translated-work {
+            padding-top: 30px;
+            @media #{$medium-up} {
+                padding-top: 0;
+            }
+        }
+    }
+	
+}
+
+.article-subnav {
+        margin-top: $footer-padding;
+        font-size: rem-calc(28);
+        font-family: $header-font-family;
+        
+        line-height: 1.2;
+
+
+
+        .toc-container{
+            text-align: center;
+            padding-bottom: $column-gutter;
+
+            @media #{$large-up} {
+                //margin-top: -30px;
+                padding-bottom: 0;
+            }
+
+
+            .toc-link{
+                font-size: rem-calc(24);
+                text-transform: uppercase;
+                margin-top: $column-gutter;
+                border-bottom: 2px solid $primary-color;
+                
+                &:hover{
+                    border-radius: 3px;
+                }
+
+                @media #{$large-up}{
+                   // padding-bottom: rem-calc(10);
+                }
+            }   
+        }
+
+        .prev-container{
+            text-align: center;
+            @media #{$large-up} {
+                text-align: left;
+            }
+        }
+        .next-container{
+            text-align: center;
+            @media #{$large-up} {
+                text-align: right;
+            }
+            &.hide-for-large-up{
+                padding: 20px 0;
+            }
+        }
+
+
+        @media #{$large-up} {
+            //text-align: right;
+        }
+    }

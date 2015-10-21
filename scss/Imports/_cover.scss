@@ -1,0 +1,109 @@
+.issue-date{
+	a{color: #eee;}
+	font-family: $header-font-family;
+	font-size: rem-calc(12);
+	text-align: right;
+	text-transform: uppercase;
+
+	span{
+		padding-right: 5px;
+		display: block;
+		padding-top: 10px;
+
+		@media #{$large-up}{
+			padding-top: $column-gutter/2;
+		}
+
+		@media #{$xlarge-up}{
+			//padding-top: $column-gutter;
+		}
+	}
+}
+
+.issue-title{
+	color: lighten($primary-color, 50);
+	display: inline-block;
+	border-bottom: 3px white solid;
+
+	padding: rem-calc(10);
+	font-family: $header-font-family;
+	font-size: rem-calc(22);
+	color: white;
+		-webkit-transition: all .8s;
+	transition: all .8s;
+	&:hover{
+		border-bottom-color: lighten($primary-color, 50);
+		border-radius: 10px;
+	}
+
+	@media #{$large-up}{
+		padding: rem-calc(13);
+		font-size: rem-calc(32);
+	}
+}
+
+
+.cover-container{
+	background-size: cover;
+	background-repeat: no-repeat;
+	background-color: #666;
+
+	.top-bar {
+  		background-color: rgba($topbar-base-color, 0);
+
+	}
+
+	.contain-to-grid{
+		//background: rgba($topbar-base-color, 0.1);
+		background: none;
+	}
+
+	.cover-screen{
+		background: rgba($topbar-base-color, 0.3);
+	}
+
+	@media #{$large-up}{
+		min-height: 300px;
+	}
+
+}
+.cover-content{
+	
+	color: white;
+	text-align: center;
+	background-attachment: fixed;
+	background-position: 50% 50%;
+	padding-bottom: 20px;
+	span {
+		color: #eee;
+		text-transform: uppercase;
+		font-family: $header-font-family;
+		font-size: rem-calc(15);
+		display: block;
+		a{
+			color: white;
+		}
+	}
+
+	h1{
+		color: white;
+		font-weight: normal;
+	}
+
+
+	@media #{$medium-up}{
+		padding-top: 150px;
+		min-height: 500px;
+	}
+
+	@media #{$large-up}{
+		padding-top: 150px;
+		min-height: 600px;
+	}
+
+	@media #{$xlarge-up}{
+		padding-top: 200px;
+		min-height: 700px;
+	}
+
+}

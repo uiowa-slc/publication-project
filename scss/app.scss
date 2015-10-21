@@ -1,0 +1,191 @@
+@import "imports/settings";
+@import "foundation";
+
+@import "imports/footer/config";
+@import "imports/footer/mixins";
+
+@import "imports/header";
+@import "imports/homepage";
+@import "imports/article";
+@import "imports/cover";
+@import "imports/blog";
+@import "imports/issue";
+@import "imports/issue-holder";
+@import "imports/side-nav";
+@import "imports/footer/footer";
+
+@import "imports/footer/grid-simple";
+
+.exchanges-logo{
+	font-family: 'Libre Baskerville', serif, times;
+}
+
+
+h1{
+	font-weight: bold;
+	margin-bottom: 1rem;
+}
+
+h1, h2, h3, h4, h5, h6 {
+	letter-spacing: 0.7;
+
+	&.banner{
+		text-transform: uppercase;
+		font-size: 0.75em;
+		margin: $column-gutter/2 0;
+	}
+}
+
+
+.WidgetHolder h3{
+	@extend h3.banner;
+}
+
+
+hr {
+	margin-bottom: 1rem;
+}
+
+.clearfix {
+    clear: both;
+}
+
+.main {
+    min-height: 320px;
+    padding-top: $column-gutter/2;
+}
+
+.name {
+    position: relative;
+    z-index: 1000;
+}
+
+.name .category {
+    display: inline-block;
+    margin-left: 8px;
+}
+
+.main-column {
+    @media #{$large-up} {
+        @include grid-column($collapse: true);
+    }
+}
+/* Content padding so it doesn't run up against the sidenav  */
+
+.padded-content{
+	padding-top: 20px;
+    @media #{$medium-up} {
+        
+    }
+    @media #{$large-up} {
+        padding-left: 40px;
+        padding-right: 20px;
+        padding-top: 30px;
+    }
+    @media #{$xlarge-up} {
+        padding-left: 60px;
+        padding-right: 20%;
+    }	
+}
+
+.emblem{
+	width: 100%;
+}
+
+.news-list{
+
+	article {
+		//padding: 20px 0;
+	    time{
+	    	font-size: rem-calc(14);
+	    	line-height: 1em;
+	    	display: block;
+	    	text-transform: uppercase;
+	    	color: $darkGray;
+	    	font-family: $header-font-family;
+	    	margin: 0.4em 0;
+	    }
+	    header {
+	        font-family: $header-font-family;
+	        h1{
+	        	text-transform: uppercase;
+	        }
+	        small {
+	        	font-weight: normal;
+	        	text-transform: none;
+	            display: block;
+	            padding: 0.1em 0;
+	            line-height: 1;
+	        }
+	    }
+	    .article-text, .content-text {
+	        max-width: 720px;
+	        min-height: 300px;
+	    }
+	    .content-text * {
+	        font-size: rem-calc(18);
+	    }
+
+	}
+}
+
+
+.button.view-translator-notes{
+	margin-bottom: 0;
+}
+
+
+
+.byline {
+    font-size: rem-calc(14);
+    line-height: 1;
+    color: #666;
+    font-style: italic;
+}
+
+.category {
+    text-transform: uppercase;
+    display: block;
+    color: $primary-color;
+    font-size: rem-calc(13);
+}
+
+
+.reveal-modal-bg{
+	position: fixed;
+}
+
+
+
+#news {
+	blockquote {
+		color: $primary-color;
+		font-size: 90%;
+	}
+	
+	.columns, .column {
+
+	}
+	
+}
+
+.breadcrumb{
+    margin-bottom: $column-gutter/2;
+      background: none;
+      border-bottom: #ADADAD 2px solid;
+      color: #797979;
+      padding: 5px 10px;
+      text-transform: uppercase;
+ 	  -webkit-transition: all .8s;
+      transition: all .8s;
+      &.button:hover, &.button:active{
+      	background: none;
+      	color: #797979;
+      	border-radius: 10px;
+      }
+    }
+.blog-post-meta{
+	font-size: rem-calc(11);
+	text-transform: uppercase;
+	font-family: $header-font-family;
+}

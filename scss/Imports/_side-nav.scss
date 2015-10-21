@@ -1,0 +1,298 @@
+.side-nav-column {
+	position: fixed;
+	left: 0;		
+	overflow-y: scroll;
+	height: 100%;
+	background-color: #F8F8F8;
+	@media #{$medium-up} {
+		@include grid-column(
+			$collapse: true
+		);
+	};
+} 
+
+.side-nav, ul.off-canvas-list {
+	
+	h3 small{
+		display: block;
+		line-height: 1.1;
+	}
+
+	@media #{$medium-up}{
+		padding: 0;
+	}
+
+	li {
+		background-color: #372B21;
+		border-bottom: 1px solid darken($secondary-color, 10%);
+
+		&.article-nav.issue{
+			background-size: cover;
+			text-align: center;
+
+			h2{
+				font-size: rem-calc(28);
+				@media #{$large-up}{
+					font-size: rem-calc(34);
+				}
+			}
+		}
+		.issue-nav-overlay{
+			background-color: rgba(#372B21, 0.7);
+			&:hover{
+				background-color: rgba(#372B21, 0.5);
+			}
+		}
+
+		&.article-nav.issue.active .issue-nav-overlay{
+			background-color: rgba(#372B21, 0.5);
+		}
+
+		&.article-nav.issue a:hover, &.article-nav.issue.active a {
+			background:none;
+		}
+
+		.nav-li-content {
+			color: $gray;
+		}
+
+		
+		
+		a:not(.button) {
+			transition: none;
+			color: #fff;
+			padding: rem-calc(20);
+		}
+	}
+	:last-child{
+		border-bottom: 0;
+	}
+
+	h1, h2, h3, h4, h5, h6{
+		text-transform: none;
+		color: #fff;
+	}
+	a.article-nav {
+		color: #646464;
+	}
+
+	p{
+		line-height: 1;
+	}
+
+	h3{
+		margin-top: 0;
+		font-size: rem-calc(18);
+		line-height: 1.1;
+	}
+	p, span, h3{
+		@media #{$large-up} {
+			margin-right: 2px;
+		}
+	}
+	
+	.byline{
+		font-size: rem-calc(12);
+		margin-bottom: 0;
+	}
+	
+	
+	li.article-nav a:hover, li.active a{
+		background-color: darken($secondary-color, 10);
+		color: $lightGray;
+		background-image: url('../images/sidenav-active.png');
+		background-position: 100% 0;
+		background-repeat: repeat-y;
+	}
+
+
+
+
+	li.title-nav {
+		background-color: #28201A;
+		text-align: center;
+		border: none;
+		
+		&:hover{
+			color: white;
+		}
+		a{
+
+
+		}
+		.category{
+			display: inline;
+			margin-right: 0;
+			color: #f4f4f4;
+
+		}
+		h1{
+			margin: 0;
+		}
+		h1 img {
+			height: 30px;
+			@media #{$medium-up} {
+				height: 30px;
+				margin-top: 20px;
+				margin-right: 5px;
+			}			
+		}
+		
+		#current-issue {
+			a {
+				letter-spacing: normal;
+				-webkit-transition: letter-spacing, 1s ease-in-out 0s;
+				-moz-transition: letter-spacing, 1s ease-in-out 0s;
+				-o-transition: letter-spacing, 1s ease-in-out 0s;
+				transition: letter-spacing, 1s ease-in-out 0s;
+			}
+
+			a:hover {
+				letter-spacing: 1px;
+				-webkit-transition: letter-spacing, .5s linear 0;
+				-moz-transition: letter-spacing, .5s linear 0;
+				-o-transition: letter-spacing, .5s linear 0;
+				transition: letter-spacing, .5s linear 0;
+			}
+		}
+		
+		.exchanges-logo {	
+			color: white !important;
+			font-size: 2.75em;
+			font-family: 'Libre Baskerville', serif, times;
+			font-weight: bold;
+			margin-bottom: 5px;
+			a{
+				padding-top: 15px;
+				padding-bottom: 10px;
+			}
+		}
+		
+		
+		.issue-logo {
+			font-size: 1.5em;
+			a{
+				color: #ddd;
+			}
+
+		}
+		#title-nav-menu {
+			margin-bottom:0;
+			margin-left: 0;
+			border-top: solid $secondary-color 1px;
+			padding-bottom: 3px;
+			
+			li {
+				background-color: $primary-brown;
+				display: inline-block;
+				color: $gray;
+				border-bottom: 0;
+				width: auto;
+					
+				a, span {
+					color: $gray;
+					padding: 0 8px;
+					margin-top: 0;
+					cursor: pointer;
+
+				}
+
+				
+				:hover {
+					color: white;
+				}
+				
+			}
+		}
+			
+		#title-nav-menu {
+			margin-left: 0;
+			margin-right: 0;
+			
+			.columns {
+				padding: 0;
+			}
+		}	
+		
+	}
+	
+	li.pastissues {
+		display: none;
+		background-color: darken($secondary-color, 3%);
+
+		.nav-li-content{
+			padding: 0;
+		}
+		
+		.issue-date {
+			color: $darkGray;
+			margin-top: .25em;
+			text-transform: lowercase;
+			font-variant: small-caps;
+		}
+
+		.nav-deets{
+			color: #bababa;
+		}
+		
+		ul {
+			list-style: none;
+			margin-left: 0;
+
+			li{
+				background: none;
+				border-color: lighten($secondary-color,10%);
+			}
+			
+			li:hover {
+				background-color: darken($secondary-color, 13%);
+			}
+		}
+		
+		a {
+			background: none;
+		}
+	}
+}
+
+.nav-deets {
+	margin-top: .25em;
+	text-transform: uppercase;
+	font-size: 12px;
+	line-height: normal;
+	margin-bottom: 0px;
+	letter-spacing: 1px;
+}
+
+.side-nav>li.issue-title {
+	text-transform: uppercase;
+}
+
+ul.off-canvas-list 
+{
+	
+	background-color: $primary-color;
+	.childList {
+		height: 100%; 
+		padding: 17px 0px 6px 0px; 
+		&:hover, .active { border-right: 2px solid #30ceda; }
+		overflow: auto;
+	}
+
+	li p {
+		color: #888888; 
+		margin-top: -5px;
+	}
+}
+
+.left-off-canvas-menu {
+	background-color: #372B21;
+
+}
+
+.move-right .exit-off-canvas{
+	box-shadow: none;
+} 
+
+
+
