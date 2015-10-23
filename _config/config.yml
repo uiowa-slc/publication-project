@@ -4,9 +4,6 @@ Controller:
 Page:
   extensions:
     - PublicationPage
-Page_Controller:
-  extensions:
-    - PublicationPage_Controller
 BlogPost:
   extensions:
     - BlogFieldExtension

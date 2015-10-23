@@ -20,7 +20,7 @@ class Article extends Page {
 	private static $belongs_many_many = array(
 		'Issues' => 'Issue',
 		'Authors' => 'Author',
-		'Translators' => 'Translator',
+	//	'Translators' => 'Translator',
 	);
 
 	private static $default_parent = "articles";
