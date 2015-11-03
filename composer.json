@@ -1,0 +1,54 @@
+{
+        "name": "md/publication-project",
+        "description": "Publication Project Code and default templates",
+        "type": "silverstripe-module",
+        "minimum-stability": "dev",
+        "require": {
+                "php": ">=5.3.2",
+                "silverstripe/cms": "3.2.0",
+                "silverstripe/framework": "3.2.0",
+                "silverstripe/installer": "*",
+                "silverstripe-themes/simple": "*",
+                "undefinedoffset/sortablegridfield": "*",
+                "unclecheese/betterbuttons": "*",
+                "unclecheese/eventcalendar": "1.0.x",
+                "colymba/gridfield-bulk-editing-tools": "*",
+                "silverstripe/blog": "2.0.x",
+                "silverstripe/widgets": "*",
+                "silverstripe/userforms": "2.0.x",
+                "silverstripe/recaptcha": "*",
+                "silverstripe/mathspamprotection" : "*",
+                "simplepie/simplepie": "*",
+                "silverstripe/googlesitemaps": "*",
+                "silverstripe/timepickerfield": "*",
+                "jonom/focuspoint" : "*",
+                "md/division-bar": "*",
+                "silverstripe-australia/gridfieldextensions" : "*",
+                "silverstripe/staticpublisher" : "*",
+                "silverstripe/tenon" : "*",
+                "normann/gridfieldpaginatorwithshowall" : "*",
+                "md/silverstripe-flickr" : "*",
+                "silverstripe-australia/gridfieldextensions" : "*",
+                "jonom/silverstripe-betternavigator": "*",
+                "thisisbd/silverstripe-maintenance-mode" : "*"
+        },
+        "repositories": [
+        {
+            "type": "vcs",
+            "url": "https://github.com/StudentLifeMarketingAndDesign/division-bar"       
+        },
+        {
+            "type": "vcs",
+            "url": "https://github.com/StudentLifeMarketingAndDesign/rss-display"       
+        },
+        {
+            "type": "vcs",
+            "url": "https://github.com/StudentLifeMarketingAndDesign/ac-json-events"       
+        },
+        {
+            "type": "vcs",
+            "url": "https://github.com/StudentLifeMarketingAndDesign/silverstripe-flickr"
+        }
+    ]
+
+}
