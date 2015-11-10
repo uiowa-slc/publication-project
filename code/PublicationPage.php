@@ -16,6 +16,11 @@ class PublicationPage extends DataExtension {
 		return $fields;
 	}
 
+	public function updateURLSegment($url, $title) {
+		return "guhh";
+
+	}
+
 	public function NextPage() {
 		$page = Page::get()->filter(array(
 				'ParentID'         => $this->owner->ParentID,

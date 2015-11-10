@@ -32,7 +32,8 @@ class Article extends Page {
 		$titleField = new HTMLEditorField('Title', 'Article Title');
 		$titleField->setRows(1);
 
-		$fields->addFieldToTab('Root.Main', $titleField, 'MenuTitle');
+		$fields->addFieldToTab('Root.Main', $titleField, 'URLSegment');
+		$fields->addFieldToTab('Root.Main', new UploadField('Image', 'Image (1920x1080 or 1280x720)'), 'Content');
 		return $fields;
 	}
 
