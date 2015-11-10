@@ -20,7 +20,7 @@ class PublicationPage_Controller extends Extension {
 	function StatusMessage() {
 		if (Session::get('ActionMessage')) {
 			$message = Session::get('ActionMessage');
-			$status = Session::get('ActionStatus');
+			$status  = Session::get('ActionStatus');
 
 			Session::clear('ActionStatus');
 			Session::clear('ActionMessage');
@@ -30,8 +30,6 @@ class PublicationPage_Controller extends Extension {
 
 		return false;
 	}
-
-
 
 	public function getBlog() {
 		return NewsHolder::get()->First();
@@ -50,7 +48,9 @@ class PublicationPage_Controller extends Extension {
 
 	public function FeaturedIssue() {
 		$homePage = HomePage::get()->First();
-		return $homePage->FeaturedIssue();
+		if (isset($homePage)) {
+			return $homePage->FeaturedIssue();
+		}
 	}
 	public function getCurrentIssue() {
 		$sessionIssue = Session::get('issue');
@@ -67,7 +67,7 @@ class PublicationPage_Controller extends Extension {
 	}
 
 	public function getEmblem() {
-		$two = 'one';
+		$two  = 'one';
 		$page = Director::get_current_page();
 
 		while (($page) && ($page->ClassName != "Issue")) {

@@ -6,7 +6,11 @@ class IssueHolder extends Page {
 	);
 
 	private static $has_one = array(
-		'Issue' => 'Issue',
+
+	);
+
+	private static $extensions = array(
+		'Lumberjack',
 	);
 
 	private static $allowed_children = array("Issue");
