@@ -27,7 +27,12 @@ class Article extends Page {
 
 	public function getCMSFields() {
 		$fields = parent::getCMSFields();
+		$fields->removeByName('Title');
 
+		$titleField = new HTMLEditorField('Title', 'Article Title');
+		$titleField->setRows(1);
+
+		$fields->addFieldToTab('Root.Main', $titleField, 'MenuTitle');
 		return $fields;
 	}
 
