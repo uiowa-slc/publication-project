@@ -2,9 +2,10 @@
 class Issue extends Page {
 
 	private static $db = array(
-		"Volume" => "Int",
-		"Date"   => "Text",
-		"Number" => "Text",
+		"Volume"                  => "Int",
+		"Date"                    => "Text",
+		"Number"                  => "Text",
+		"OriginalPublicationDate" => "Date",
 	);
 
 	private static $has_one = array(
@@ -25,6 +26,8 @@ class Issue extends Page {
 		$fields->removeByName('Content');
 		$fields->addFieldToTab('Root.Main', new TextField('Volume'));
 		$fields->addFieldToTab('Root.Main', new TextField('Date', 'Issue Date'));
+		$fields->addFieldToTab('Root.Main', DateField::create('OriginalPublicationDate', 'Original publish date (not shown, only for internal purposes)')
+			->setConfig('showcalendar', true));
 		$fields->addFieldToTab('Root.Main', new TextField('Number', 'Issue Number'));
 		return $fields;
 	}

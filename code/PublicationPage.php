@@ -11,9 +11,15 @@ class PublicationPage extends DataExtension {
 
 	);
 
-	function getCMSFields() {
+	public function getCMSFields() {
 		$fields = parent::getCMSFields();
 		return $fields;
+	}
+
+	public function LatestIssue() {
+		$latestIssue = Issue::get()->sort('OriginalPublicationDate')->First();
+		return $latestIssue;
+
 	}
 
 	public function NextPage() {
