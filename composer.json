@@ -30,7 +30,8 @@
                 "md/silverstripe-flickr" : "*",
                 "silverstripe-australia/gridfieldextensions" : "*",
                 "jonom/silverstripe-betternavigator": "*",
-                "thisisbd/silverstripe-maintenance-mode" : "*"
+                "thisisbd/silverstripe-maintenance-mode" : "*",
+                "unclecheese/bootstrap-forms" : "*"
         },
         "repositories": [
         {
