@@ -2,24 +2,19 @@
 class Issue extends Page {
 
 	private static $db = array(
-		"IssueVolume" => "Int",
-		"IssueDate"   => "Text",
-		"IssueNumber" => "Text",
+		"Volume" => "Int",
+		"Date"   => "Text",
+		"Number" => "Text",
 	);
 
 	private static $has_one = array(
-		"Emblem" => "Image",
+		"CoverImage" => "Image",
 	);
 
 	private static $plural_name = 'Issues';
 
-	private static $extensions = array(
-		'Lumberjack',
-	);
-
-	private static $default_parent   = "IssueHolder";
-	private static $show_in_sitetree = false;
-	private static $can_be_root      = false;
+	private static $default_parent = "IssueHolder";
+	private static $can_be_root    = false;
 
 	private static $allowed_children = array('Article');
 
@@ -27,6 +22,10 @@ class Issue extends Page {
 
 	function getCMSFields() {
 		$fields = parent::getCMSFields();
+		$fields->removeByName('Content');
+		$fields->addFieldToTab('Root.Main', new TextField('Volume'));
+		$fields->addFieldToTab('Root.Main', new TextField('Date', 'Issue Date'));
+		$fields->addFieldToTab('Root.Main', new TextField('Number', 'Issue Number'));
 		return $fields;
 	}
 
@@ -34,7 +33,7 @@ class Issue extends Page {
 		return $this->Children();
 	}
 
-	public function RandomArticles() {
+	public function getRandomArticles() {
 		return SiteTree::get()->filter('ParentID', $this->ID)->sort('RAND()');
 	}
 

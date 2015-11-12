@@ -9,10 +9,6 @@ class IssueHolder extends Page {
 
 	);
 
-	private static $extensions = array(
-		'Lumberjack',
-	);
-
 	private static $allowed_children = array("Issue");
 
 	public function getCMSFields() {
