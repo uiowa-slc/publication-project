@@ -2,6 +2,7 @@
 class Article extends Page {
 	private static $db = array(
 		'FormattedTitle' => 'HTMLText',
+		'Citation'       => 'Text',
 	);
 
 	private static $has_one = array(
