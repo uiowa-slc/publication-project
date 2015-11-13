@@ -1,6 +1,6 @@
 <?php
 
-class ArticleTag extends DataObject implements CategorisationObject {
+class ArticleTag extends DataObject{
 	/**
 	 * @var array
 	 */

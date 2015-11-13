@@ -68,4 +68,5 @@ class Article_Controller extends Page_Controller {
 		parent::init();
 	}
 
+
 }
