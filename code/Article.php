@@ -53,6 +53,11 @@ class Article extends Page {
 
 		$authorFieldConfig = GridFieldConfig_RelationEditor::create();
 		$authorGridField   = new GridField('Authors', 'Authors', $this->Authors(), $authorFieldConfig);
+
+		if ($this->ID == 0) {
+			$fields->addFieldToTab('Root.Authors', new LabelField('<strong>Note: You need to save a draft of this article before adding an author</strong><br />'));
+		}
+		$fields->addFieldToTab('Root.Authors', new LabelField('Please search for an existing author first before adding a new one.'));
 		$fields->addFieldToTab('Root.Authors', $authorGridField);
 
 		$catField = TagField::create('Categories', 'Category', ArticleCategory::get(), $this->Tags())->setShouldLazyLoad(true);

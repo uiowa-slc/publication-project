@@ -14,6 +14,7 @@ class Contributor extends DataObject {
 
 	);
 
+
 	public function Link() {
 		$contributorPage = ContributorPage::get()->First();
 		if ($contributorPage) {

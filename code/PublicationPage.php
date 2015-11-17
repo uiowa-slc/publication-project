@@ -19,7 +19,6 @@ class PublicationPage extends DataExtension {
 	public function LatestIssue() {
 		$latestIssue = Issue::get()->sort('OriginalPublicationDate')->First();
 		return $latestIssue;
-
 	}
 
 	public function NextPage() {
