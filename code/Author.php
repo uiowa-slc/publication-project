@@ -18,6 +18,13 @@ class Author extends Contributor {
 		)
 	);
 
+	/**
+	 * @var array
+	 */
+	private static $extensions = array(
+		'ArticleURLSegmentExtension',
+	);
+
 	public function getCMSFields() {
 		$fields = parent::getCMSFields();
 		$fields->addFieldToTab('Root.Main', new HTMLEditorField(
@@ -25,5 +32,14 @@ class Author extends Contributor {
 				'Author note related to article (specific to this article only)'
 			));
 		return $fields;
+	}
+
+	/**
+	 * Returns a relative URL for the tag link.
+	 *
+	 * @return string
+	 */
+	public function Link() {
+		return 'author/'.$this->URLSegment;
 	}
 }
