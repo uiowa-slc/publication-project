@@ -18,6 +18,7 @@ class Article extends Page {
 	private static $many_many = array(
 		'Categories' => 'ArticleCategory',
 		'Tags'       => 'ArticleTag',
+		'Footnotes' => 'Footnote',
 	);
 	private static $listing_page_class = 'Issue';
 	private static $show_in_sitetree   = false;
@@ -70,9 +71,28 @@ class Article extends Page {
 
 		$fields->addFieldToTab('Root.Main', $catField, 'Content');
 		$fields->addFieldToTab('Root.Main', $tagField, 'Content');
+
+
+		$footnoteFieldConfig = GridFieldConfig_RelationEditor::create();
+		$footnoteGridField   = new GridField('Footnotes', 'Footnotes', $this->Footnotes(), $footnoteFieldConfig);
+		$fields->addFieldToTab('Root.Footnotes', $footnoteGridField);
+
+
+
+
+	
 		return $fields;
 	}
 
+	public static function footnoteHandler($arguments, $content, $parser = null, $Footnotes) {
+
+
+ 		$number = $arguments['#'];
+		return '<sup id="fnref:'.$number.'">
+        		<a href="#fn:'.$number.'" rel="footnote">'.$number.'</a>
+   		 </sup>';
+
+	}
 }
 
 class Article_Controller extends Page_Controller {
