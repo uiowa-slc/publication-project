@@ -14,10 +14,12 @@ class Article extends Page {
 	private static $plural_name       = 'Articles';
 	private static $belongs_many_many = array(
 		'Authors' => 'Author',
+		'Responses' => 'Article'
 	);
 	private static $many_many = array(
 		'Categories' => 'ArticleCategory',
 		'Tags'       => 'ArticleTag',
+		'Responses'	 => 'Article'
 	);
 	private static $listing_page_class = 'Issue';
 	private static $show_in_sitetree   = false;
@@ -54,11 +56,16 @@ class Article extends Page {
 		$authorFieldConfig = GridFieldConfig_RelationEditor::create();
 		$authorGridField   = new GridField('Authors', 'Authors', $this->Authors(), $authorFieldConfig);
 
+
+		$responseFieldConfig = GridFieldConfig_RelationEditor::create();
+		$responseGridField   = new GridField('Responses', 'Responses', $this->Responses(), $responseFieldConfig);
+
 		if ($this->ID == 0) {
 			$fields->addFieldToTab('Root.Authors', new LabelField('<strong>Note: You need to save a draft of this article before adding an author</strong><br />'));
 		}
 		$fields->addFieldToTab('Root.Authors', new LabelField('Please search for an existing author first before adding a new one.'));
 		$fields->addFieldToTab('Root.Authors', $authorGridField);
+		$fields->addFieldToTab('Root.Responses', $responseGridField);
 
 		$catField = TagField::create('Categories', 'Category', ArticleCategory::get(), $this->Tags())->setShouldLazyLoad(true);
 		$catField->setIsMultiple(false);
