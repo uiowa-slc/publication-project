@@ -71,10 +71,16 @@ class Article extends Page {
 		$fields->addFieldToTab('Root.Authors', $authorGridField);
 		$fields->addFieldToTab('Root.Responses', $responseGridField);
 
-		$catField = TagField::create('Categories', 'Category', ArticleCategory::get(), $this->Tags())->setShouldLazyLoad(true);
-		$catField->setIsMultiple(false);
+		
 
 		$tagField = TagField::create('Tags', 'Tags', ArticleTag::get(), $this->Tags())->setShouldLazyLoad(true);
+
+		$catField = DropdownField::create(
+			'ArticleTagID',
+			'Featured Tag',
+			$this->Tags()->map('ID', 'Title')
+			);
+
 
 		$fields->addFieldToTab('Root.Files', new UploadField('PrintableArticle', 'Download/Printable Version of the Article'));
 		$fields->addFieldToTab('Root.Files', new UploadField('Image', 'Image (1920x1080 or 1280x720)'));
