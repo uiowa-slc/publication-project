@@ -8,18 +8,21 @@ class Article extends Page {
 	private static $has_one = array(
 		'Image'            => 'Image',
 		'PrintableArticle' => 'File',
-
+		'ResponseTo' => 'Article',
 		'FeaturedTag' => 'ArticleTag',
 	);
+	private static $has_many = array(
+		'Responses' => 'Article' ,
+	);
+
 	private static $plural_name       = 'Articles';
+
 	private static $belongs_many_many = array(
 		'Authors' => 'Author',
-		'Responses' => 'Article'
 	);
 	private static $many_many = array(
 		'Categories' => 'ArticleCategory',
 		'Tags'       => 'ArticleTag',
-		'Responses'	 => 'Article'
 	);
 	private static $listing_page_class = 'Issue';
 	private static $show_in_sitetree   = false;
@@ -58,6 +61,7 @@ class Article extends Page {
 
 
 		$responseFieldConfig = GridFieldConfig_RelationEditor::create();
+		$responseFieldConfig->removeComponentsByType($responseFieldConfig->getComponentByType('GridFieldAddNewButton'));
 		$responseGridField   = new GridField('Responses', 'Responses', $this->Responses(), $responseFieldConfig);
 
 		if ($this->ID == 0) {
