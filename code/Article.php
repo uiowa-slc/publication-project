@@ -3,6 +3,7 @@ class Article extends Page {
 	private static $db = array(
 		'FormattedTitle' => 'HTMLText',
 		'Citation'       => 'HTMLText',
+		'ExpandedText'	 => 'HTMLText',
 	);
 
 	private static $has_one = array(
@@ -71,7 +72,9 @@ class Article extends Page {
 		$fields->addFieldToTab('Root.Authors', $authorGridField);
 		$fields->addFieldToTab('Root.Responses', $responseGridField);
 
-		
+		$fields->removeByName('Content');
+		$fields->addFieldToTab('Root.FullText', new HTMLEditorField('Content', 'Static Content'));
+		$fields->addFieldToTab('Root.FullText', new HTMLEditorField('ExpandedText', 'Expanded Content'));
 
 		$tagField = TagField::create('Tags', 'Tags', ArticleTag::get(), $this->Tags())->setShouldLazyLoad(true);
 
