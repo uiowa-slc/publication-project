@@ -59,6 +59,24 @@ class Article extends Page {
 		$titleField->setRows(1);
 		$fields->addFieldToTab('Root.Main', $titleField);
 
+		//Tag and Featured tag fields - ArticleInfo tab
+		$tagField = TagField::create('Tags', 'Tags', ArticleTag::get(), $this->Tags())->setShouldLazyLoad(true);
+		$catField = DropdownField::create(
+			'FeaturedTagID',
+			'Featured tag (shows above the article\'s title)',
+			$this->Tags()->map('ID', 'Title')
+		)->setEmptyString('(No featured tag)');
+
+		$fields->addFieldToTab('Root.Main', new UploadField('Image', 'Image (1920x1080 or 1280x720)'));
+
+		if ($this->Tags()->First()) {
+			$fields->addFieldToTab('Root.ArticleInfo', $catField);
+		} else {
+			$fields->addFieldToTab('Root.ArticleInfo', new ReadonlyField('FeaturedTagReadonly', 'Featured tag (shows above article title)'));
+			$fields->addFieldToTab('Root.ArticleInfo', new LabelField('FeaturedTagLabel', ' Note: You must add tags and save this article before adding a featured tag.'));
+		}
+		$fields->addFieldToTab('Root.ArticleInfo', $tagField);
+
 		//Author field - ArticleInfo tab
 		$authorFieldConfig = GridFieldConfig_RelationEditor::create();
 		$authorGridField   = new GridField('Authors', 'Authors', $this->Authors(), $authorFieldConfig);
@@ -72,24 +90,6 @@ class Article extends Page {
 		$fields->addFieldToTab('Root.ArticleText', new UploadField('PrintableArticle', 'Downloadable/printable version of the article'));
 		$fields->addFieldToTab('Root.ArticleText', new HTMLEditorField('Content', 'Article summary text or an entire short article'));
 		$fields->addFieldToTab('Root.ArticleText', HTMLEditorField::create('ExpandedText', 'Article full text (don\'t include the summary from the field above)')->setRows(40));
-		$tagField = TagField::create('Tags', 'Tags', ArticleTag::get(), $this->Tags())->setShouldLazyLoad(true);
-		$catField = DropdownField::create(
-			'FeaturedTagID',
-			'Featured tag (shows above the article\'s title)',
-			$this->Tags()->map('ID', 'Title')
-		)->setEmptyString('(Select a featured tag)');
-
-		$fields->addFieldToTab('Root.Main', new UploadField('Image', 'Image (1920x1080 or 1280x720)'));
-
-		if ($this->Tags()->First()) {
-			$fields->addFieldToTab('Root.ArticleInfo', $catField);
-		} else {
-
-			$fields->addFieldToTab('Root.ArticleInfo', new ReadonlyField('FeaturedTagReadonly', 'Featured tag (shows above article title)'));
-
-			$fields->addFieldToTab('Root.ArticleInfo', new LabelField('FeaturedTagLabel', ' Note: You must add tags and save this article before adding a featured tag.'));
-		}
-		$fields->addFieldToTab('Root.ArticleInfo', $tagField);
 
 		//Footnotes field - Footnotes tab
 		$footnoteFieldConfig = GridFieldConfig_RelationEditor::create();
