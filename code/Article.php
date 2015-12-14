@@ -51,53 +51,60 @@ class Article extends Page {
 
 	public function getCMSFields() {
 		$fields = parent::getCMSFields();
+
+		//Main Content tab.
 		$fields->removeByName('Content');
-		$titleField = new HTMLEditorField('FormattedTitle', 'Formatted Article Title (if the title has formatting)');
+		$fields->removeByName('Metadata');
+		$titleField = new HTMLEditorField('FormattedTitle', 'Formatted Article Title (only fill out if the article title uses bold, italics, etc.)');
 		$titleField->setRows(1);
 		$fields->addFieldToTab('Root.Main', $titleField);
 
-		//Article summary/expanded/downloadable text - Article Text
+		//Article summary/expanded/downloadable text - Article Text tab
 		$fields->addFieldToTab('Root.ArticleText', new UploadField('PrintableArticle', 'Downloadable/printable version of the article'));
 		$fields->addFieldToTab('Root.ArticleText', new HTMLEditorField('Content', 'Article summary text or an entire short article'));
 		$fields->addFieldToTab('Root.ArticleText', HTMLEditorField::create('ExpandedText', 'Article full text (don\'t include the summary from the field above)')->setRows(40));
-
-		//Author field - ArticleInfo
-		$authorFieldConfig = GridFieldConfig_RelationEditor::create();
-		$authorGridField   = new GridField('Authors', 'Authors', $this->Authors(), $authorFieldConfig);
-		$fields->addFieldToTab('Root.ArticleInfo', new LabelField('Search for an existing author (if they\'ve previously contributed to ILR) or add one below'));
-		$fields->addFieldToTab('Root.ArticleInfo', $authorGridField);
-
-		//Citation field - ArticleInfo
-		$fields->addFieldToTab('Root.ArticleInfo', HTMLEditorField::create('Citation', 'Citation')->setRows(1));
-
-		//Responses field - ArticleInfo
-		$responseFieldConfig = GridFieldConfig_RelationEditor::create();
-		$responseFieldConfig->removeComponentsByType($responseFieldConfig->getComponentByType('GridFieldAddNewButton'));
-		$responseGridField = new GridField('Responses', 'Responses', $this->Responses(), $responseFieldConfig);
-
-		if ($this->ID == 0) {
-			$fields->addFieldToTab('Root.ArticleInfo', new LabelField('<strong>Note: You need to save a draft of this article before adding an author</strong><br />'));
-		}
-
 		$tagField = TagField::create('Tags', 'Tags', ArticleTag::get(), $this->Tags())->setShouldLazyLoad(true);
-
 		$catField = DropdownField::create(
 			'ArticleTagID',
-			'Featured tag (You must add tags and save this article before adding tags)',
+			'Featured tag (shows above the article\'s title)',
 			$this->Tags()->map('ID', 'Title')
-		);
+		)->setEmptyString('(Select a featured tag)');
 
 		$fields->addFieldToTab('Root.Main', new UploadField('Image', 'Image (1920x1080 or 1280x720)'));
 
+		if ($this->Tags()->First()) {
+			$fields->addFieldToTab('Root.ArticleInfo', $catField);
+		} else {
+			$fields->addFieldToTab('Root.ArticleInfo', new LabelField('FeaturedTagLabel', ' Note: You must add tags and save this article before adding a featured tag.'));
+			$fields->addFieldToTab('Root.ArticleInfo', new ReadonlyField('FeaturedTagReadonly', 'Featured tag (shows above article title)'));
+
+		}
 		$fields->addFieldToTab('Root.ArticleInfo', $tagField);
-		$fields->addFieldToTab('Root.ArticleInfo', $catField);
 
-		$fields->addFieldToTab('Root.ArticleInfo', $responseGridField);
+		//Author field - ArticleInfo tab
+		$authorFieldConfig = GridFieldConfig_RelationEditor::create();
+		$authorGridField   = new GridField('Authors', 'Authors', $this->Authors(), $authorFieldConfig);
+		$fields->addFieldToTab('Root.ArticleInfo', new LabelField('Search for an existing author (if they\'ve previously contributed to ILR) or add one below.'));
+		$fields->addFieldToTab('Root.ArticleInfo', $authorGridField);
 
+		//Citation field - ArticleInfo tab
+		$fields->addFieldToTab('Root.ArticleInfo', HTMLEditorField::create('Citation', 'Citation')->setRows(1));
+
+		//Footnotes field - Footnotes tab
 		$footnoteFieldConfig = GridFieldConfig_RelationEditor::create();
 		$footnoteGridField   = new GridField('Footnotes', 'Footnotes', $this->Footnotes(), $footnoteFieldConfig);
 		$fields->addFieldToTab('Root.Footnotes', $footnoteGridField);
 
+		//Responses field - Responses tab
+		$responseFieldConfig = GridFieldConfig_RelationEditor::create();
+		$responseFieldConfig->removeComponentsByType($responseFieldConfig->getComponentByType('GridFieldAddNewButton'));
+		$responseGridField = new GridField('Responses', 'Responses', $this->Responses(), $responseFieldConfig);
+		if ($this->ID == 0) {
+			$fields->addFieldToTab('Root.ArticleInfo', new LabelField('<strong>Note: You need to save a draft of this article before adding an author</strong><br />'));
+		}
+		$fields->addFieldToTab('Root.Responses', $responseGridField);
+
+		// Return fields
 		return $fields;
 	}
 
@@ -134,14 +141,7 @@ class Article extends Page {
 
 		parent::onBeforeWrite();
 	}
-	public static function footnoteHandler($arguments, $content, $parser = null, $Footnotes) {
 
-		$number = $arguments['#'];
-		return '<sup id="fnref:'.$number.'">
-        		<a href="#fn:'.$number.'" rel="footnote">'.$number.'</a>
-   		 </sup>';
-
-	}
 }
 
 class Article_Controller extends Page_Controller {
