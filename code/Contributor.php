@@ -14,14 +14,12 @@ class Contributor extends DataObject {
 
 	);
 
-
-	public function Link() {
-		$contributorPage = ContributorPage::get()->First();
-		if ($contributorPage) {
-			return $contributorPage->Link().'show/'.$this->ID;
-		}
-	}
-
+	/**
+	 * @var array
+	 */
+	private static $extensions = array(
+		'ArticleURLSegmentExtension',
+	);
 	public function getTitle() {
 		return $this->Name;
 	}

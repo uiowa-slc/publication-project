@@ -18,13 +18,6 @@ class Author extends Contributor {
 		)
 	);
 
-	/**
-	 * @var array
-	 */
-	private static $extensions = array(
-		'ArticleURLSegmentExtension',
-	);
-
 	public function getCMSFields() {
 		$fields = parent::getCMSFields();
 		$fields->addFieldToTab('Root.Main', new HTMLEditorField(
