@@ -165,10 +165,18 @@ class Article extends Page {
 			//$fnText = $fnAnchorParent->nodeValue;
 			$footnoteValue = $footnote->nodeValue;
 
-			preg_match_all("^\[(.*?)\]\\.^.", $footnoteValue, $footnoteNumbers);
+			// get the footnote number:
+			preg_match_all("/\d+/", $footnoteValue, $footnoteNumbers);
 
-			foreach($footnoteNumbers[1] as $footnoteNumber){
-				echo $footnoteNumber.'<br />';
+			//print_r($footnoteNumbers);
+
+			//preg_match_all("/\[(.*?)\]\.\s/", $footnoteValue, $footnoteNumbers);
+			//preg_match_all('/\href="#_ftnref\(.*?)\"\/', $footnoteValue, $footnoteNumbers);
+
+			foreach($footnoteNumbers[0] as $footnoteNumberArray){
+				
+				$footnoteNumber = $footnoteNumberArray[0];
+				print_r($footnoteNumberArray[0]);
 				if(is_numeric($footnoteNumber)){
 					
 					$footnoteContent = str_replace(array('['.$footnoteNumber.'].','&nbsp;'),array('',''), $footnoteValue);
@@ -180,7 +188,7 @@ class Article extends Page {
 						$footnoteObject->Number = $footnoteNumber;
 						$footnoteObject->Content = $footnoteContent;
 						$footnoteObject->write();
-						echo "wrote ".$footnoteObject->Number." <br />";
+						//echo "wrote ".$footnoteObject->Number." <br />";
 					}
 
 				}
