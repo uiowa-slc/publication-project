@@ -14,7 +14,7 @@ class Article extends Page {
 	);
 	private static $has_many = array(
 		'Responses' => 'Article',
-		'Footnotes' => 'Footnote'
+		'Footnotes' => 'Footnote',
 	);
 
 	private static $plural_name = 'Articles';
@@ -137,74 +137,95 @@ class Article extends Page {
 		@$dom->loadHTML($contentConverted);
 
 		$xpath = new DOMXPath($dom);
-		
+
 		//Parse the superscripts
 		$wordSuperscripts = $xpath->query('//a[contains(@href,"#_ftn")]/@href');
-		foreach($wordSuperscripts as $wordSuperscript){
+
+		foreach ($wordSuperscripts as $wordSuperscript) {
 			//$wordSuperscript->removeChild();
 			$parentNode = $wordSuperscript->parentNode;
+			//print_r($wordSuperscript->nodeValue);
 
-			$parentNodeInitValue = $parentNode->nodeValue;
-			$parentNodeFormattedVal = str_replace(array('[',']'), array('',''), $parentNode->nodeValue);
+			//$parentNodeInitValue    = $parentNode->nodeValue;
+			//$parentNodeFormattedVal = str_replace(array('[', ']'), array('', ''), $parentNode->nodeValue);
+
+			$parentNodeFormattedVal = str_replace('#_ftn', '', $wordSuperscript->nodeValue);
 
 			$wordSuperscript->nodeValue = '#fn:'.$parentNodeFormattedVal;
 			$parentNode->setAttribute('rel', 'footnote');
 			$parentNode->nodeValue = $parentNodeFormattedVal;
 
-			//print_r($parentNode);
+			//We need to minimize number of xpath queries by maybe caching these and not doing it nexted in wordsuperscripts foreach
 
-	// 		$newANode->setAttribute('rel', 'footnote');
-		}
+			//$footnotes = $xpath->query('//*[contains(@href, "#_ftnref'.$parentNodeFormattedVal.'")]');
+			$footnotes = $xpath->query('//a[@href="#_ftnref'.$parentNodeFormattedVal.'"]');
+			//$footnoteValue = $footnote->parentNode->nodeValue;
+			$footnoteValue = $footnotes->item(0)->parentNode->nodeValue;
 
-		//Parse the footnotes at the end of the document.
-		$footnotes = $xpath->query('//*[contains(@class, "FootNote")]');
-		foreach($footnotes as $footnote){
-			//$fnAnchor = $footnote->parentNode;
-			//$fnAnchorParent = $fnAnchor->parentNode;
+			//print_r($footnotes);
 
-			//$fnText = $fnAnchorParent->nodeValue;
-			$footnoteValue = $footnote->nodeValue;
+			$footnoteTest = Footnote::get()->filter(array('Number' => $parentNodeFormattedVal, 'ArticleID' => $this->ID))->First();
 
-			// get the footnote number:
-			preg_match_all("/\d+/", $footnoteValue, $footnoteNumbers);
-
-			//print_r($footnoteNumbers);
-
-			//preg_match_all("/\[(.*?)\]\.\s/", $footnoteValue, $footnoteNumbers);
-			//preg_match_all('/\href="#_ftnref\(.*?)\"\/', $footnoteValue, $footnoteNumbers);
-
-			foreach($footnoteNumbers[0] as $footnoteNumberArray){
-				
-				$footnoteNumber = $footnoteNumberArray[0];
-				print_r($footnoteNumberArray[0]);
-				if(is_numeric($footnoteNumber)){
-					
-					$footnoteContent = str_replace(array('['.$footnoteNumber.'].','&nbsp;'),array('',''), $footnoteValue);
-					$footnoteTest = Footnote::get()->filter(array('Number' => $footnoteNumber, 'ArticleID' => $this->ID))->First();
-
-					if(!isset($footnoteTest)){
-						$footnoteObject = new Footnote();
-						$footnoteObject->ArticleID = $this->ID;
-						$footnoteObject->Number = $footnoteNumber;
-						$footnoteObject->Content = $footnoteContent;
-						$footnoteObject->write();
-						//echo "wrote ".$footnoteObject->Number." <br />";
-					}
-
-				}
+			if (!isset($footnoteTest)) {
+				$footnoteObject            = new Footnote();
+				$footnoteObject->ArticleID = $this->ID;
+				$footnoteObject->Number    = $parentNodeFormattedVal;
+				$footnoteObject->Content   = $footnoteValue;
+				$footnoteObject->write();
+				//echo "wrote ".$footnoteObject->Number." <br />";
 			}
+
 			//print_r($footnoteValue.'<br />');
-			
 
 			//$footnoteTest = Footnote::get()->filter(array('Name' -> $))
 
-			//$fnAnchorParent->parentNode->removeChild($fnAnchorParent);
+			//$footnote->parentNode->removeChild($footnote);
 
+			//print_r($parentNode);
+
+			// 		$newANode->setAttribute('rel', 'footnote');
 		}
-		
 
+		//Parse the footnotes at the end of the document.
+		//$footnotes = $xpath->query('//*[contains(@class, "FootNote")]');
+		//$count     = 0;
 
+		// foreach ($footnotes as $footnote) {
+		// 	//$fnAnchor = $footnote->parentNode;
+		// 	//$fnAnchorParent = $fnAnchor->parentNode;
 
+		// 	//$fnText = $fnAnchorParent->nodeValue;
+		// 	$footnoteValue = $footnote->nodeValue;
+
+		// 	$count++;
+		// 	//echo $count;
+
+		// 	// get the footnote number:
+		// 	//preg_match_all("/\d+/", $footnoteValue, $footnoteNumbers);
+
+		// 	//print_r($footnoteNumbers);
+
+		// 	//preg_match_all("/\[(.*?)\]\.\s/", $footnoteValue, $footnoteNumbers);
+		// 	//preg_match_all('/\href="#_ftnref\(.*?)\"\/', $footnoteValue, $footnoteNumbers);
+
+		// 	// $footnoteTest = Footnote::get()->filter(array('Number' => $count, 'ArticleID' => $this->ID))->First();
+
+		// 	// if (!isset($footnoteTest)) {
+		// 	// 	$footnoteObject            = new Footnote();
+		// 	// 	$footnoteObject->ArticleID = $this->ID;
+		// 	// 	$footnoteObject->Number    = $count;
+		// 	// 	$footnoteObject->Content   = $footnoteValue;
+		// 	// 	$footnoteObject->write();
+		// 	// 	//echo "wrote ".$footnoteObject->Number." <br />";
+		// 	// }
+
+		// 	// //print_r($footnoteValue.'<br />');
+
+		// 	// //$footnoteTest = Footnote::get()->filter(array('Name' -> $))
+
+		// 	// $footnote->parentNode->removeChild($footnote);
+
+		// }
 
 		//echo $dom->saveXML();
 		//return $dom->saveXML();
@@ -212,11 +233,11 @@ class Article extends Page {
 
 	protected function onBeforeWrite() {
 
-		$summary = $this->Content;
-		$full    = $this->ExpandedText;
+		//$summary = $this->Content;
+		//$full    = $this->ExpandedText;
 
-		// $this->Content      = $this->parseSuperscriptFootnotes($summary);
-		// $this->ExpandedText = $this->parseSuperscriptFootnotes($full);
+		//$this->Content      = $this->parseSuperscriptFootnotes($summary);
+		//$this->ExpandedText = $this->parseSuperscriptFootnotes($full);
 
 		parent::onBeforeWrite();
 	}
@@ -225,11 +246,9 @@ class Article extends Page {
 
 class Article_Controller extends Page_Controller {
 
-
 	public function init() {
 
 		echo $this->parseSuperscriptFootnotes($this->Content);
-
 
 		parent::init();
 	}
