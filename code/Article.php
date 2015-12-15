@@ -165,13 +165,13 @@ class Article extends Page {
 			//$fnText = $fnAnchorParent->nodeValue;
 			$footnoteValue = $footnote->nodeValue;
 
-			preg_match_all("^\[(.*?)\]\.^", $footnoteValue, $footnoteNumbers);
+			preg_match_all("^\[(.*?)\]\\.^.", $footnoteValue, $footnoteNumbers);
 
 			foreach($footnoteNumbers[1] as $footnoteNumber){
 				echo $footnoteNumber.'<br />';
 				if(is_numeric($footnoteNumber)){
 					
-					$footnoteContent = $footnoteValue;
+					$footnoteContent = str_replace(array('['.$footnoteNumber.'].','&nbsp;'),array('',''), $footnoteValue);
 					$footnoteTest = Footnote::get()->filter(array('Number' => $footnoteNumber, 'ArticleID' => $this->ID))->First();
 
 					if(!isset($footnoteTest)){
