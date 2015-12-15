@@ -14,6 +14,7 @@ class Article extends Page {
 	);
 	private static $has_many = array(
 		'Responses' => 'Article',
+		'Footnotes' => 'Footnote'
 	);
 
 	private static $plural_name = 'Articles';
@@ -106,28 +107,99 @@ class Article extends Page {
 		// Return fields
 		return $fields;
 	}
+	//Old Parser, keeping for reference.
+	// protected function parseSuperscriptFootnotes($content) {
+	// 	$dom              = new DOMDocument;
+	// 	$contentConverted = mb_convert_encoding($content, 'HTML-ENTITIES', 'UTF-8');
+	// 	@$dom->loadHTML($contentConverted);
+	// 	foreach ($dom->getElementsByTagName('sup') as $node) {
 
+	// 		$nodeInitValue = $node->nodeValue;
+	// 		$node->setAttribute('id', 'fnref:'.$nodeInitValue);
+
+	// 		$node->nodeValue = null;
+
+	// 		$newANode = $dom->createElement('a', $nodeInitValue);
+	// 		$newANode->setAttribute('href', '#fn:'.$nodeInitValue);
+	// 		$newANode->setAttribute('rel', 'footnote');
+
+	// 		$node->appendChild($newANode);
+
+	// 		$dom->saveXML($node);
+
+	// 	}
+	// 	return $dom->saveXML();
+	// }
 	protected function parseSuperscriptFootnotes($content) {
+
 		$dom              = new DOMDocument;
 		$contentConverted = mb_convert_encoding($content, 'HTML-ENTITIES', 'UTF-8');
 		@$dom->loadHTML($contentConverted);
-		foreach ($dom->getElementsByTagName('sup') as $node) {
 
-			$nodeInitValue = $node->nodeValue;
-			$node->setAttribute('id', 'fnref:'.$nodeInitValue);
+		$xpath = new DOMXPath($dom);
+		
+		//Parse the superscripts
+		$wordSuperscripts = $xpath->query('//a[contains(@href,"#_ftn")]/@href');
+		foreach($wordSuperscripts as $wordSuperscript){
+			//$wordSuperscript->removeChild();
+			$parentNode = $wordSuperscript->parentNode;
 
-			$node->nodeValue = null;
+			$parentNodeInitValue = $parentNode->nodeValue;
+			$parentNodeFormattedVal = str_replace(array('[',']'), array('',''), $parentNode->nodeValue);
 
-			$newANode = $dom->createElement('a', $nodeInitValue);
-			$newANode->setAttribute('href', '#fn:'.$nodeInitValue);
-			$newANode->setAttribute('rel', 'footnote');
+			$wordSuperscript->nodeValue = '#fn:'.$parentNodeFormattedVal;
+			$parentNode->setAttribute('rel', 'footnote');
+			$parentNode->nodeValue = $parentNodeFormattedVal;
 
-			$node->appendChild($newANode);
+			//print_r($parentNode);
 
-			$dom->saveXML($node);
+	// 		$newANode->setAttribute('rel', 'footnote');
+		}
+
+		//Parse the footnotes at the end of the document.
+		$footnotes = $xpath->query('//*[contains(@class, "FootNote")]');
+		foreach($footnotes as $footnote){
+			//$fnAnchor = $footnote->parentNode;
+			//$fnAnchorParent = $fnAnchor->parentNode;
+
+			//$fnText = $fnAnchorParent->nodeValue;
+			$footnoteValue = $footnote->nodeValue;
+
+			preg_match_all("^\[(.*?)\]\.^", $footnoteValue, $footnoteNumbers);
+
+			foreach($footnoteNumbers[1] as $footnoteNumber){
+				echo $footnoteNumber.'<br />';
+				if(is_numeric($footnoteNumber)){
+					
+					$footnoteContent = $footnoteValue;
+					$footnoteTest = Footnote::get()->filter(array('Number' => $footnoteNumber, 'ArticleID' => $this->ID))->First();
+
+					if(!isset($footnoteTest)){
+						$footnoteObject = new Footnote();
+						$footnoteObject->ArticleID = $this->ID;
+						$footnoteObject->Number = $footnoteNumber;
+						$footnoteObject->Content = $footnoteContent;
+						$footnoteObject->write();
+						echo "wrote ".$footnoteObject->Number." <br />";
+					}
+
+				}
+			}
+			//print_r($footnoteValue.'<br />');
+			
+
+			//$footnoteTest = Footnote::get()->filter(array('Name' -> $))
+
+			//$fnAnchorParent->parentNode->removeChild($fnAnchorParent);
 
 		}
-		return $dom->saveXML();
+		
+
+
+
+
+		//echo $dom->saveXML();
+		//return $dom->saveXML();
 	}
 
 	protected function onBeforeWrite() {
@@ -135,8 +207,8 @@ class Article extends Page {
 		$summary = $this->Content;
 		$full    = $this->ExpandedText;
 
-		$this->Content      = $this->parseSuperscriptFootnotes($summary);
-		$this->ExpandedText = $this->parseSuperscriptFootnotes($full);
+		// $this->Content      = $this->parseSuperscriptFootnotes($summary);
+		// $this->ExpandedText = $this->parseSuperscriptFootnotes($full);
 
 		parent::onBeforeWrite();
 	}
@@ -145,7 +217,12 @@ class Article extends Page {
 
 class Article_Controller extends Page_Controller {
 
+
 	public function init() {
+
+		echo $this->parseSuperscriptFootnotes($this->Content);
+
+
 		parent::init();
 	}
 

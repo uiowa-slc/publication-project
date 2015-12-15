@@ -8,8 +8,8 @@ class Footnote extends DataObject {
 	);
 
 
-	private static $belongs_many_many = array(
-		'Articles' => 'Article',
+	private static $has_one = array(
+		'Article' => 'Article',
 	);
 
 	private static $summary_fields = array(
