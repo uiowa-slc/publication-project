@@ -159,17 +159,18 @@ class Article extends Page {
 
 			//Parent node formatted value is the anchor's value, with the [] braces replaced. E.g. *,1,2,3,4,etc
 			$anchorNodeFormattedVal = str_replace(array('[', ']'), array('', ''), $anchorNode->nodeValue);
-
-			//Create a new superscript node one node above the anchor (probably the p tag with class "FootNote")
-			$newSupNode = $dom->createElement('sup', '');
-			$anchorNode->parentNode->replaceChild($newSupNode, $anchorNode);
-
-
-			$newSupNode->appendChild($anchorNode);
-
-
+			
 			//only change the superscript values if our anchor's value isn't a (non-canonical) footnote (aka ones with an asterisk, probably an author note).
-			if($anchorNodeInitValue != '*'){
+			if($anchorNodeFormattedVal != '*'){
+				//Create a new superscript node one node above the anchor (probably the p tag with class "FootNote")
+				$newSupNode = $dom->createElement('sup', '');
+				$anchorNode->parentNode->replaceChild($newSupNode, $anchorNode);
+
+
+				$newSupNode->appendChild($anchorNode);
+				//print_r($anchorNodeInitValue);
+
+
 				$wordSuperscript->nodeValue = '#fn:'.$anchorNodeFormattedVal;
 				$anchorNode->setAttribute('rel', 'footnote');
 				$anchorNode->nodeValue = $anchorNodeFormattedVal;				
@@ -206,7 +207,6 @@ class Article extends Page {
 
 		//Check dom for existing manually-entered superscripts E.g., <sup>1</sup>
 		$dom = $this->parseManualSuperscripts($dom);
-
 		return $dom;
 	}
 
@@ -215,8 +215,8 @@ class Article extends Page {
 		$summary = $this->Content;
 		$full    = $this->ExpandedText;
 
-		$this->Content      = $this->parseWordSuperscriptsFootnotes($summary);
-		$this->ExpandedText = $this->parseWordSuperscriptsFootnotes($full);
+		//$this->Content      = $this->parseWordSuperscriptsFootnotes($summary);
+		//$this->ExpandedText = $this->parseWordSuperscriptsFootnotes($full);
 
 		parent::onBeforeWrite();
 	}
@@ -227,7 +227,7 @@ class Article_Controller extends Page_Controller {
 
 	public function init() {
 
-		// $this->parseSuperscriptFootnotes($this->Content);
+		echo $this->parseWordSuperscriptsFootnotes($this->Content);
 
 		parent::init();
 	}
