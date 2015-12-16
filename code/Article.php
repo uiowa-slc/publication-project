@@ -130,6 +130,7 @@ class Article extends Page {
 	// 	}
 	// 	return $dom->saveXML();
 	// }
+
 	protected function parseSuperscriptFootnotes($content) {
 
 		$dom              = new DOMDocument;
@@ -139,51 +140,91 @@ class Article extends Page {
 		$xpath = new DOMXPath($dom);
 
 		//Parse the superscripts
-		$wordSuperscripts = $xpath->query('//a[contains(@href,"#_ftn")]/@href');
+		$wordSuperscripts = $xpath->query('//a[contains(@href,"#_ftn") and not (contains(@href,"ref"))]/@href');
+		//print_r($wordSuperscripts);
 
 		foreach ($wordSuperscripts as $wordSuperscript) {
 			//$wordSuperscript->removeChild();
-			$parentNode = $wordSuperscript->parentNode;
-			//print_r($wordSuperscript->nodeValue);
 
-			//$parentNodeInitValue    = $parentNode->nodeValue;
-			//$parentNodeFormattedVal = str_replace(array('[', ']'), array('', ''), $parentNode->nodeValue);
+			//Parent node is the anchor containing the Word formatted superscript.
+			$anchorNode = $wordSuperscript->anchorNode;
+			
+			//Parent node init value is the anchor's raw value. E.g., *,[1],[2],[3]
+			$anchorNodeInitValue    = $anchorNode->nodeValue;
 
-			$parentNodeFormattedVal = str_replace('#_ftn', '', $wordSuperscript->nodeValue);
 
-			$wordSuperscript->nodeValue = '#fn:'.$parentNodeFormattedVal;
-			$parentNode->setAttribute('rel', 'footnote');
-			$parentNode->nodeValue = $parentNodeFormattedVal;
+
+
+			//$anchorNodeFormattedVal = str_replace(array('[', ']'), array('', ''), $anchorNode->nodeValue);
+			//print_r($anchorNode->nodeValue);
+			$wordSuperFormattedVal = str_replace('#_ftn', '', $wordSuperscript->nodeValue);
+
+			//Parent node formatted value is the anchor's value, with the [] braces replaced. E.g. *,1,2,3,4,etc
+			$anchorNodeFormattedVal = str_replace(array('[', ']'), array('', ''), $anchorNode->nodeValue);
+
+			
+
+			//Create a new superscript node one node above the anchor (probably the p tag with class "FootNote")
+			$newSupNode = $dom->createElement('sup', $anchorNode->anchorNode);
+			$newSupNode->appendChild($anchorNode);
+			//print_r($anchorNodeFormattedVal);
+
+			//Remove anchor node from dom
+			$dom->removeChild($anchorNode);
+
+
+			//only change the superscript values if our anchor's value isn't a (non-canonical) footnote (aka ones with an asterisk, probably an author note).
+			if($anchorNodeInitValue != '*'){
+				$wordSuperscript->nodeValue = '#fn:'.$anchorNodeFormattedVal;
+				$anchorNode->setAttribute('rel', 'footnote');
+				$anchorNode->nodeValue = $anchorNodeFormattedVal;				
+			}
+
+
 
 			//We need to minimize number of xpath queries by maybe caching these and not doing it nexted in wordsuperscripts foreach
 
-			//$footnotes = $xpath->query('//*[contains(@href, "#_ftnref'.$parentNodeFormattedVal.'")]');
-			$footnotes = $xpath->query('//a[@href="#_ftnref'.$parentNodeFormattedVal.'"]');
-			//$footnoteValue = $footnote->parentNode->nodeValue;
-			$footnoteValue = $footnotes->item(0)->parentNode->nodeValue;
+			//$footnotes = $xpath->query('//*[contains(@href, "#_ftnref'.$anchorNodeFormattedVal.'")]');
+			$footnotes = $xpath->query('//a[@href="#_ftnref'.$wordSuperFormattedVal.'"]');
+			//print_r($anchorNodeFormattedVal);
+			//$footnoteValue = $footnote->anchorNode->nodeValue;
+			$footnoteItem = $footnotes->item(0);
 
-			//print_r($footnotes);
+			if($footnoteItem){
+				$footnoteValue = $footnoteItem->anchorNode->nodeValue;
+				$formattedfnVal = str_replace($anchorNodeInitValue.'.', '', $footnoteValue);
+				//$formattedfnValEncoded = str_replace('\x{00a0}','', $formattedfnVal);
+				$formattedfnValEncoded = htmlentities($formattedfnVal);
+				$formattedfnValEncoded = str_replace('&nbsp;', '', $formattedfnValEncoded);
+				//$formattedfnVal = trim($formattedfnVal);
+				//print_r($footnoteValue->anchorNode);
+				//print_r($footnotes);
 
-			$footnoteTest = Footnote::get()->filter(array('Number' => $parentNodeFormattedVal, 'ArticleID' => $this->ID))->First();
+				 //echo 'bin2hex: '.bin2hex($footnoteValue).'<br />';
 
-			if (!isset($footnoteTest)) {
-				$footnoteObject            = new Footnote();
-				$footnoteObject->ArticleID = $this->ID;
-				$footnoteObject->Number    = $parentNodeFormattedVal;
-				$footnoteObject->Content   = $footnoteValue;
-				$footnoteObject->write();
-				//echo "wrote ".$footnoteObject->Number." <br />";
+				$footnoteTest = Footnote::get()->filter(array('Number' => $wordSuperFormattedVal, 'ArticleID' => $this->ID))->First();
+
+				if (!isset($footnoteTest)) {
+					$footnoteObject            = new Footnote();
+					$footnoteObject->ArticleID = $this->ID;
+					$footnoteObject->Number    = $anchorNodeFormattedVal;
+					$footnoteObject->Content   = $formattedfnValEncoded;
+					$footnoteObject->write();
+					//echo "wrote ".$footnoteObject->Number." <br />";
+				}
 			}
 
 			//print_r($footnoteValue.'<br />');
 
 			//$footnoteTest = Footnote::get()->filter(array('Name' -> $))
 
-			//$footnote->parentNode->removeChild($footnote);
+			//$footnote->anchorNode->removeChild($footnote);
 
-			//print_r($parentNode);
+			//print_r($anchorNode);
 
 			// 		$newANode->setAttribute('rel', 'footnote');
+
+			//return $dom->saveXML();
 		}
 
 		//Parse the footnotes at the end of the document.
@@ -191,8 +232,8 @@ class Article extends Page {
 		//$count     = 0;
 
 		// foreach ($footnotes as $footnote) {
-		// 	//$fnAnchor = $footnote->parentNode;
-		// 	//$fnAnchorParent = $fnAnchor->parentNode;
+		// 	//$fnAnchor = $footnote->anchorNode;
+		// 	//$fnAnchorParent = $fnAnchor->anchorNode;
 
 		// 	//$fnText = $fnAnchorParent->nodeValue;
 		// 	$footnoteValue = $footnote->nodeValue;
@@ -223,21 +264,21 @@ class Article extends Page {
 
 		// 	// //$footnoteTest = Footnote::get()->filter(array('Name' -> $))
 
-		// 	// $footnote->parentNode->removeChild($footnote);
+		// 	// $footnote->anchorNode->removeChild($footnote);
 
 		// }
 
 		//echo $dom->saveXML();
-		//return $dom->saveXML();
+		return $dom->saveXML();
 	}
 
 	protected function onBeforeWrite() {
 
-		//$summary = $this->Content;
-		//$full    = $this->ExpandedText;
+		$summary = $this->Content;
+		$full    = $this->ExpandedText;
 
-		//$this->Content      = $this->parseSuperscriptFootnotes($summary);
-		//$this->ExpandedText = $this->parseSuperscriptFootnotes($full);
+		$this->Content      = $this->parseSuperscriptFootnotes($summary);
+		$this->ExpandedText = $this->parseSuperscriptFootnotes($full);
 
 		parent::onBeforeWrite();
 	}
@@ -248,7 +289,7 @@ class Article_Controller extends Page_Controller {
 
 	public function init() {
 
-		echo $this->parseSuperscriptFootnotes($this->Content);
+		$this->parseSuperscriptFootnotes($this->Content);
 
 		parent::init();
 	}

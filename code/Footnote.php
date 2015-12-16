@@ -3,7 +3,7 @@
 class Footnote extends DataObject {
 
 	private static $db = array(
-		'Number' => 'Int',
+		'Number' => 'Text',
 		'Content' => 'HTMLText',
 	);
 
