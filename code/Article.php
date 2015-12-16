@@ -183,15 +183,15 @@ class Article extends Page {
 
 			if($footnoteItem){
 				$footnoteValue = $footnoteItem->parentNode->nodeValue;
-				$formattedfnVal = str_replace($anchorNodeInitValue.'.', '', $footnoteValue);
-				$formattedfnValEncoded = htmlentities($formattedfnVal);
+				//$formattedfnVal = str_replace($anchorNodeInitValue.'.', '', $footnoteValue);
+				$formattedfnValEncoded = htmlentities($footnoteValue);
 				$formattedfnValEncoded = str_replace('&nbsp;', '', $formattedfnValEncoded);
 
 				//print_r($footnoteValue->parentNode);
 				//print_r($footnotes);
 
 
-				$footnoteTest = Footnote::get()->filter(array('Number' => $wordSuperFormattedVal, 'ArticleID' => $this->ID))->First();
+				/*$footnoteTest = Footnote::get()->filter(array('Number' => $wordSuperFormattedVal, 'ArticleID' => $this->ID))->First();
 
 				if (!isset($footnoteTest)) {
 					$footnoteObject            = new Footnote();
@@ -200,7 +200,7 @@ class Article extends Page {
 					$footnoteObject->Content   = $formattedfnValEncoded;
 					$footnoteObject->write();
 					//echo "wrote ".$footnoteObject->Number." <br />";
-				}
+				}*/
 			}
 
 		}
@@ -215,8 +215,8 @@ class Article extends Page {
 		$summary = $this->Content;
 		$full    = $this->ExpandedText;
 
-		//$this->Content      = $this->parseWordSuperscriptsFootnotes($summary);
-		//$this->ExpandedText = $this->parseWordSuperscriptsFootnotes($full);
+		$this->Content      = $this->parseWordSuperscriptsFootnotes($summary);
+		$this->ExpandedText = $this->parseWordSuperscriptsFootnotes($full);
 
 		parent::onBeforeWrite();
 	}
@@ -227,7 +227,7 @@ class Article_Controller extends Page_Controller {
 
 	public function init() {
 
-		echo $this->parseWordSuperscriptsFootnotes($this->Content);
+		//echo $this->parseWordSuperscriptsFootnotes($this->Content);
 
 		parent::init();
 	}
