@@ -109,8 +109,6 @@ class Article extends Page {
 	}
 	//Old Parser, keeping for reference.
 
-
-
 	protected function parseManualSuperscripts($dom) {
 		foreach ($dom->getElementsByTagName('sup') as $node) {
 
@@ -131,16 +129,12 @@ class Article extends Page {
 		return $dom->saveXML();
 	}
 
-
-
 	protected function parseWordSuperscriptsFootnotes($content) {
 		$dom              = new DOMDocument;
 		$contentConverted = mb_convert_encoding($content, 'HTML-ENTITIES', 'UTF-8');
 		@$dom->loadHTML($contentConverted);
 
 		$xpath = new DOMXPath($dom);
-
-
 
 		//Parse the superscripts
 		$wordSuperscripts = $xpath->query('//a[contains(@href,"#_ftn") and not (contains(@href,"ref"))]/@href');
@@ -149,9 +143,9 @@ class Article extends Page {
 		foreach ($wordSuperscripts as $wordSuperscript) {
 			//Parent node is the anchor containing the Word formatted superscript.
 			$anchorNode = $wordSuperscript->parentNode;
-			
+
 			//Parent node init value is the anchor's raw value. E.g., *,[1],[2],[3]
-			$anchorNodeInitValue    = $anchorNode->nodeValue;
+			$anchorNodeInitValue = $anchorNode->nodeValue;
 
 			//$anchorNodeFormattedVal = str_replace(array('[', ']'), array('', ''), $anchorNode->nodeValue);
 			//print_r($anchorNode->nodeValue);
@@ -159,21 +153,19 @@ class Article extends Page {
 
 			//Parent node formatted value is the anchor's value, with the [] braces replaced. E.g. *,1,2,3,4,etc
 			$anchorNodeFormattedVal = str_replace(array('[', ']'), array('', ''), $anchorNode->nodeValue);
-			
+
 			//only change the superscript values if our anchor's value isn't a (non-canonical) footnote (aka ones with an asterisk, probably an author note).
-			if($anchorNodeFormattedVal != '*'){
+			if ($anchorNodeFormattedVal != '*') {
 				//Create a new superscript node one node above the anchor (probably the p tag with class "FootNote")
 				$newSupNode = $dom->createElement('sup', '');
 				$anchorNode->parentNode->replaceChild($newSupNode, $anchorNode);
 
-
 				$newSupNode->appendChild($anchorNode);
 				//print_r($anchorNodeInitValue);
 
-
 				$wordSuperscript->nodeValue = '#fn:'.$anchorNodeFormattedVal;
 				$anchorNode->setAttribute('rel', 'footnote');
-				$anchorNode->nodeValue = $anchorNodeFormattedVal;				
+				$anchorNode->nodeValue = $anchorNodeFormattedVal;
 			}
 
 			//We need to minimize number of xpath queries by maybe caching these and not doing it nested in the wordsuperscripts foreach loop
@@ -181,17 +173,17 @@ class Article extends Page {
 			//print_r($anchorNodeFormattedVal);
 			$footnoteItem = $footnotes->item(0);
 
-			if($footnoteItem){
+			if ($footnoteItem) {
 				$footnoteValue = $footnoteItem->parentNode->nodeValue;
 				//$formattedfnVal = str_replace($anchorNodeInitValue.'.', '', $footnoteValue);
-				$formattedfnValEncoded = htmlentities($footnoteValue);
+				$formattedfnValEncoded = htmlentities($footnoteValue, null, 'utf-8');
 				$formattedfnValEncoded = str_replace('&nbsp;', '', $formattedfnValEncoded);
+				//$formattedfnValEncoded = str_replace('&nbsp;', '', $formattedfnValEncoded);
 
 				//print_r($footnoteValue->parentNode);
 				//print_r($footnotes);
 
-
-				/*$footnoteTest = Footnote::get()->filter(array('Number' => $wordSuperFormattedVal, 'ArticleID' => $this->ID))->First();
+				$footnoteTest = Footnote::get()->filter(array('Number' => $wordSuperFormattedVal, 'ArticleID' => $this->ID))->First();
 
 				if (!isset($footnoteTest)) {
 					$footnoteObject            = new Footnote();
@@ -200,7 +192,7 @@ class Article extends Page {
 					$footnoteObject->Content   = $formattedfnValEncoded;
 					$footnoteObject->write();
 					//echo "wrote ".$footnoteObject->Number." <br />";
-				}*/
+				}
 			}
 
 		}
@@ -215,8 +207,8 @@ class Article extends Page {
 		$summary = $this->Content;
 		$full    = $this->ExpandedText;
 
-		$this->Content      = $this->parseWordSuperscriptsFootnotes($summary);
-		$this->ExpandedText = $this->parseWordSuperscriptsFootnotes($full);
+		//$this->Content      = $this->parseWordSuperscriptsFootnotes($summary);
+		//$this->ExpandedText = $this->parseWordSuperscriptsFootnotes($full);
 
 		parent::onBeforeWrite();
 	}
@@ -227,7 +219,7 @@ class Article_Controller extends Page_Controller {
 
 	public function init() {
 
-		//echo $this->parseWordSuperscriptsFootnotes($this->Content);
+		$this->parseWordSuperscriptsFootnotes($this->Content);
 
 		parent::init();
 	}
