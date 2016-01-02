@@ -19,7 +19,7 @@ class Issue extends Page {
 	private static $default_parent = "IssueHolder";
 	private static $can_be_root    = false;
 
-	private static $allowed_children = array('ArticleFromWord', 'Article');
+	private static $allowed_children = array('Article');
 
 	//private static $icon = array("mysite/images/tree/toc","file");
 
