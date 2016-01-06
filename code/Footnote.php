@@ -3,13 +3,13 @@
 class Footnote extends DataObject {
 
 	private static $db = array(
-		'Number' => 'Int',
+		'Number' => 'Text',
 		'Content' => 'HTMLText',
 	);
 
 
-	private static $belongs_many_many = array(
-		'Articles' => 'Article',
+	private static $has_one = array(
+		'Article' => 'Article',
 	);
 
 	private static $summary_fields = array(

@@ -7,3 +7,9 @@ Page:
 SiteConfig:
   extensions:
     - SiteConfigExtension
+Blog:
+  extensions:
+    - WidgetPageExtension
+BlogPost:
+  extensions:
+    - WidgetPageExtension
