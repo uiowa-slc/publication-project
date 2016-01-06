@@ -4,6 +4,8 @@ class Article extends Page {
 		'FormattedTitle' => 'HTMLText',
 		'Citation'       => 'HTMLText',
 		'ExpandedText'   => 'HTMLText',
+		'ArticleExcerpt' => 'Boolean',
+
 	);
 
 	private static $has_one = array(
@@ -88,6 +90,7 @@ class Article extends Page {
 
 		//Article summary/expanded/downloadable text - Article Text tab
 		$fields->addFieldToTab('Root.ArticleText', new UploadField('PrintableArticle', 'Downloadable/printable version of the article'));
+		$fields->addFieldToTab('Root.ArticleText', new CheckboxField ('ArticleExcerpt'));
 		$fields->addFieldToTab('Root.ArticleText', new HTMLEditorField('Content', 'Article summary text or an entire short article'));
 		$fields->addFieldToTab('Root.ArticleText', HTMLEditorField::create('ExpandedText', 'Article full text (don\'t include the summary from the field above)')->setRows(40));
 
