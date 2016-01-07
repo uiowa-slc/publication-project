@@ -6,7 +6,7 @@
 			</header>
 			<div class="content-text">
 				<ul class="issue-card-list">
-					<% loop Children.Sort("Created DESC") %>
+					<% loop SortedChildren %>
 						<% include IssueCard %>
 					<% end_loop %>
 				</ul>

@@ -17,6 +17,12 @@ class IssueHolder extends Page {
 
 		return $fields;
 	}
+
+	public function SortedChildren(){
+		$list = $this->Children()->sort(array('Volume'=>'DESC', 'Number'=>'DESC'));
+		return $list;
+	}
+
 }
 
 class IssueHolder_Controller extends Page_Controller {

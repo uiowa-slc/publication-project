@@ -15,9 +15,9 @@ class Issue extends Page {
 	);
 
 	private static $plural_name = 'Issues';
-
 	private static $default_parent = "IssueHolder";
 	private static $can_be_root    = false;
+	// private static $default_sort = array('Volume'=>'DESC', 'Number'=>'DESC');
 
 	private static $allowed_children = array('Article');
 
@@ -47,6 +47,7 @@ class Issue extends Page {
 	public function getRandomArticles() {
 		return SiteTree::get()->filter('ParentID', $this->ID)->sort('RAND()');
 	}
+
 
 }
 

@@ -83,6 +83,8 @@ class Article extends Page {
 
 		//Author field - ArticleInfo tab
 		$authorFieldConfig = GridFieldConfig_RelationEditor::create();
+		$authorFieldConfig ->addComponent(new GridFieldSortableRows('SortOrder'));
+		
 		$authorGridField   = new GridField('Authors', 'Authors', $this->Authors(), $authorFieldConfig);
 		$fields->addFieldToTab('Root.ArticleInfo', new LabelField('Search for an existing author (if they\'ve previously contributed to ILR) or add one above.'));
 		$fields->addFieldToTab('Root.ArticleInfo', $authorGridField);
@@ -96,10 +98,8 @@ class Article extends Page {
 		//Article summary/expanded/downloadable text - Article Text tab
 
 		$fields->addFieldToTab('Root.ArticleText', new UploadField('PrintableArticle', 'Downloadable/printable version of the article'));
-		$fields->addFieldToTab('Root.ArticleText', new CheckboxField ('ArticleExcerpt'));
-		$fields->addFieldToTab('Root.ArticleText', new HTMLEditorField('Content', 'Article summary text or an entire short article'));
-		$fields->addFieldToTab('Root.ArticleText', HTMLEditorField::create('ExpandedText', 'Article full text (don\'t include the summary from the field above)')->setRows(40));
-
+		$fields->addFieldToTab('Root.ArticleText', new CheckboxField ('ArticleExcerpt', 'This article is a stub or short version.'));
+		$fields->addFieldToTab('Root.ArticleText', HTMLEditorField::create('Content', 'Article body')->setRows(50));
 
 		//Footnotes field - Footnotes tab
 		$footnoteFieldConfig = GridFieldConfig_RelationEditor::create();
