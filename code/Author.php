@@ -13,9 +13,8 @@ class Author extends Contributor {
 		'Articles' => 'Article',
 	);
 	private static $many_many_extraFields = array(
-		'Articles'     => array(
-			'ArticleNote' => 'HTMLText',
-			'SortOrder' => 'Int'
+		'Articles' => array(
+			'ArticleNote' => 'HTMLText','SortOrder' => 'Int'
 		)
 	);
 
