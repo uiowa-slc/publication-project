@@ -3,10 +3,9 @@
 class Footnote extends DataObject {
 
 	private static $db = array(
-		'Number' => 'Text',
+		'Number'  => 'Int',
 		'Content' => 'HTMLText',
 	);
-
 
 	private static $has_one = array(
 		'Article' => 'Article',
@@ -17,5 +16,6 @@ class Footnote extends DataObject {
 		'Content',
 	);
 
+	private static $default_sort = 'Number';
 
 }
