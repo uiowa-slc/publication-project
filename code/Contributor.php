@@ -3,7 +3,7 @@ class Contributor extends DataObject {
 
 	private static $db = array(
 		'Name'                => 'Text',
-		'BiographicalDetails' => 'HTMLText'
+		'BiographicalDetails' => 'HTMLText',
 	);
 
 	private static $has_one = array(
@@ -13,8 +13,6 @@ class Contributor extends DataObject {
 	private static $many_many = array(
 
 	);
-
-
 
 	/**
 	 * @var array
@@ -35,7 +33,7 @@ class Contributor extends DataObject {
 		$fields->removeByName('Articles');
 
 		$fields->addFieldToTab('Root.Main', new TextField('Name'));
-		$fields->addFieldToTab('Root.Main', new HTMLEditorField('BiographicalDetails', 'Biographical Details'));
+		$fields->addFieldToTab('Root.Main', HTMLEditorField::create('BiographicalDetails', 'Biographical Details')->setRows(5));
 
 		return $fields;
 	}

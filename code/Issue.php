@@ -30,7 +30,7 @@ class Issue extends Page {
 		$fields->addFieldToTab('Root.Main', new TextField('Number', 'Issue Number'));
 
 		$fields->addFieldToTab('Root.Main', new TextField('Date', 'Issue Date'));
-		$fields->addFieldToTab('Root.Main', DateField::create('OriginalPublicationDate', 'Original publish date (not shown, only for internal purposes)')
+		//$fields->addFieldToTab('Root.Main', DateField::create('OriginalPublicationDate', 'Original publish date (not shown, only for internal purposes)')
 			->setConfig('showcalendar', true));
 
 		$fields->addFieldToTab('Root.Masthead', new UploadField('MastheadImage', 'Image version of the Masthead'));

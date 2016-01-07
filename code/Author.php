@@ -23,10 +23,13 @@ class Author extends Contributor {
 
 	public function getCMSFields() {
 		$fields = parent::getCMSFields();
-		$fields->addFieldToTab('Root.Main', new HTMLEditorField(
+		$fields->addFieldToTab('Root.Main', HTMLEditorField::create(
 				'ManyMany[ArticleNote]',
 				'Author note related to article (specific to this article only)'
-			));
+			)->setRows(5));
+
+		$fields->removeByName('SortOrder');
+		$fields->removeByName('URLSegment');
 		return $fields;
 	}
 
