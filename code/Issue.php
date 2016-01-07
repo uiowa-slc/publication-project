@@ -14,7 +14,7 @@ class Issue extends Page {
 		"PrintableMasthead" => "File",
 	);
 
-	private static $plural_name = 'Issues';
+	private static $plural_name    = 'Issues';
 	private static $default_parent = "IssueHolder";
 	private static $can_be_root    = false;
 	// private static $default_sort = array('Volume'=>'DESC', 'Number'=>'DESC');
@@ -31,7 +31,7 @@ class Issue extends Page {
 
 		$fields->addFieldToTab('Root.Main', new TextField('Date', 'Issue Date'));
 		//$fields->addFieldToTab('Root.Main', DateField::create('OriginalPublicationDate', 'Original publish date (not shown, only for internal purposes)')
-			->setConfig('showcalendar', true));
+		//	->setConfig('showcalendar', true));
 
 		$fields->addFieldToTab('Root.Masthead', new UploadField('MastheadImage', 'Image version of the Masthead'));
 		$fields->addFieldToTab('Root.Masthead', new UploadField('PrintableMasthead', 'Printable version of the Masthead (PDF format recommended)'));
@@ -47,7 +47,6 @@ class Issue extends Page {
 	public function getRandomArticles() {
 		return SiteTree::get()->filter('ParentID', $this->ID)->sort('RAND()');
 	}
-
 
 }
 
