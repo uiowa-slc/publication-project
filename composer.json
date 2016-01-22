@@ -29,8 +29,7 @@
                 "md/silverstripe-flickr" : "*",
                 "silverstripe-australia/gridfieldextensions" : "*",
                 "jonom/silverstripe-betternavigator": "*",
-                "thisisbd/silverstripe-maintenance-mode" : "*",
-                "unclecheese/bootstrap-forms" : "dev-1.1.10"
+                "thisisbd/silverstripe-maintenance-mode" : "*"
         },
         "repositories": [
         {
