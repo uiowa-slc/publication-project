@@ -3,25 +3,26 @@
 class Author_Controller extends ContentController {
 
 	private static $allowed_actions = array(
-		'author'
+		'author',
 	);
 
-	
 	private static $url_handlers = array(
-		'$Author!' => 'author'
+		'$Contributor!' => 'author',
 	);
 
 	public function author() {
-		$authorName = $this->getRequest()->param('Author');
+		$ContributorName = $this->getRequest()->param('Contributor');
 
-		$author = Author::get()->filter(array('URLSegment' => $authorName))->First();
-
-		if($author) {
-			$articles = $author->Articles();
+		$contributor = Contributor::get()->filter(array('URLSegment' => $ContributorName))->First();
+		if ($contributor != null) {
+			$articles = $contributor->Articles();
 			return $this->customise(new ArrayData(array(
-				'Author' => $author,
-				'Articles' => $articles
-			)))->renderWith(array("Author", "Page"));
+						'Author'   => $contributor,
+						'Articles' => $articles,
+					)))->renderWith(array("Author", "Page"));
+		} else {
+			return $this->httpError(404, 'Page not found');
 		}
+
 	}
 }
