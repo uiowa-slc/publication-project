@@ -10,8 +10,6 @@ class Issue extends Page {
 
 	private static $has_one = array(
 		"CoverImage"        => "Image",
-		"MastheadImage"     => "Image",
-		"PrintableMasthead" => "File",
 	);
 
 	private static $plural_name    = 'Issues';
@@ -28,14 +26,8 @@ class Issue extends Page {
 		$fields->removeByName('Content');
 		$fields->addFieldToTab('Root.Main', new TextField('Volume'));
 		$fields->addFieldToTab('Root.Main', new TextField('Number', 'Issue Number'));
-
 		$fields->addFieldToTab('Root.Main', new TextField('Date', 'Issue Date'));
-		//$fields->addFieldToTab('Root.Main', DateField::create('OriginalPublicationDate', 'Original publish date (not shown, only for internal purposes)')
-		//	->setConfig('showcalendar', true));
 
-		$fields->addFieldToTab('Root.Masthead', new UploadField('MastheadImage', 'Image version of the Masthead'));
-		$fields->addFieldToTab('Root.Masthead', new UploadField('PrintableMasthead', 'Printable version of the Masthead (PDF format recommended)'));
-		$fields->addFieldToTab('Root.Masthead', new HTMLEditorField('Content', 'Masthead text'));
 
 		return $fields;
 	}
