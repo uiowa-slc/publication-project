@@ -36,6 +36,8 @@ class Issue extends Page {
 		return $this->Children();
 	}
 
+	
+
 	public function getRandomArticles() {
 		return SiteTree::get()->filter('ParentID', $this->ID)->sort('RAND()');
 	}
