@@ -2,19 +2,19 @@
 class Issue extends Page {
 
 	private static $db = array(
-		"Volume"                  => "Int",
-		"Date"                    => "Text",
-		"Number"                  => "Text",
+		"Volume" => "Int",
+		"Date" => "Text",
+		"Number" => "Int",
 		"OriginalPublicationDate" => "Date",
 	);
 
 	private static $has_one = array(
-		"CoverImage"        => "Image",
+		"CoverImage" => "Image",
 	);
 
-	private static $plural_name    = 'Issues';
+	private static $plural_name = 'Issues';
 	private static $default_parent = "IssueHolder";
-	private static $can_be_root    = false;
+	private static $can_be_root = false;
 	// private static $default_sort = array('Volume'=>'DESC', 'Number'=>'DESC');
 
 	private static $allowed_children = array('Article');
@@ -28,15 +28,12 @@ class Issue extends Page {
 		$fields->addFieldToTab('Root.Main', new TextField('Number', 'Issue Number'));
 		$fields->addFieldToTab('Root.Main', new TextField('Date', 'Issue Date'));
 
-
 		return $fields;
 	}
 
 	public function getArticles() {
 		return $this->Children();
 	}
-
-	
 
 	public function getRandomArticles() {
 		return SiteTree::get()->filter('ParentID', $this->ID)->sort('RAND()');

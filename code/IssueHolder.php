@@ -18,21 +18,19 @@ class IssueHolder extends Page {
 		return $fields;
 	}
 
-
-	public function SortedChildren(){
-		$list = $this->Children()->sort(array('Volume'=>'DESC', 'Number'=>'DESC'));
+	public function SortedChildren() {
+		$list = $this->Children()->sort(array('Volume' => 'DESC', 'Number' => 'DESC'));
 		return $list;
 	}
 
-
 	public function getVolumes() {
-		
+
 		$volumeNumbers = array(); //this has to be an array
 		$issues = Issue::get();
 		$allVolumes = new ArrayList();
 
 		//get all of the volume numbers
-		foreach ($issues as $issue){
+		foreach ($issues as $issue) {
 
 			$volumeNumbers[] = $issue->Volume;
 		}
@@ -43,20 +41,19 @@ class IssueHolder extends Page {
 
 		//create a volume object for each volume number
 		//create an ArrayList of issues for each volume object
-		foreach($volNumbers as $number){
+		foreach ($volNumbers as $number) {
 			$volume = new Volume();
 			$volume->Number = $number;
 			$volume->Issues = new ArrayList();
 			//add the issues in this volume to the correct volume object
-			foreach($issues as $issue){
-				if ($issue->Volume == $number){
+			foreach ($issues as $issue) {
+				if ($issue->Volume == $number) {
 					$volume->Issues->add($issue);
 				}
 			}
 			$allVolumes->add($volume);
 			//Debug::show($volume);
 
-				
 		}
 		//Debug::show($allVolumes);
 		return $allVolumes;

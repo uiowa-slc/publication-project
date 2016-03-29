@@ -17,23 +17,25 @@ class PublicationPage extends DataExtension {
 	}
 
 	public function LatestIssue() {
-		$latestIssue = Issue::get()->sort('OriginalPublicationDate')->First();
+		$latestIssue = Issue::get()->sort(
+			array('Volume' => 'DESC', 'Number' => 'DESC')
+		)->First();
 		return $latestIssue;
 	}
 
 	public function NextPage() {
 		$page = Page::get()->filter(array(
-				'ParentID'         => $this->owner->ParentID,
-				'Sort:GreaterThan' => $this->owner->Sort,
-			))->First();
+			'ParentID' => $this->owner->ParentID,
+			'Sort:GreaterThan' => $this->owner->Sort,
+		))->First();
 
 		return $page;
 	}
 	public function PreviousPage() {
 		$page = Page::get()->filter(array(
-				'ParentID'      => $this->owner->ParentID,
-				'Sort:LessThan' => $this->owner->Sort,
-			))->Last();
+			'ParentID' => $this->owner->ParentID,
+			'Sort:LessThan' => $this->owner->Sort,
+		))->Last();
 
 		return $page;
 	}
