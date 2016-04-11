@@ -2,19 +2,20 @@
 class Article extends Page {
 	private static $db = array(
 
-		'FormattedTitle'   => 'HTMLText',
-		'Citation'         => 'HTMLText',
-		'ExpandedText'     => 'HTMLText',
-		'IsExcerpt'        => 'Boolean',
+		'FormattedTitle' => 'HTMLText',
+		'Citation' => 'HTMLText',
+		'ExpandedText' => 'HTMLText',
+		'IsExcerpt' => 'Boolean',
 		'JointAuthorNotes' => 'HTMLText',
 
 	);
 
 	private static $has_one = array(
-		'Image'            => 'Image',
+		'Image' => 'Image',
 		'PrintableArticle' => 'File',
-		'ResponseTo'       => 'Article',
-		'FeaturedTag'      => 'ArticleTag',
+		'ResponseTo' => 'Article',
+		'FeaturedTag' => 'ArticleTag',
+		'Category' => 'ArticleCategory',
 	);
 	private static $has_many = array(
 		'Responses' => 'Article',
@@ -27,14 +28,14 @@ class Article extends Page {
 		'Authors' => 'Author',
 	);
 	private static $many_many = array(
-		'Categories' => 'ArticleCategory',
-		'Tags'       => 'ArticleTag',
-		'Footnotes'  => 'Footnote',
+
+		'Tags' => 'ArticleTag',
+		'Footnotes' => 'Footnote',
 	);
 	private static $listing_page_class = 'Issue';
-	private static $show_in_sitetree   = false;
-	private static $default_parent     = "IssueHolder";
-	private static $can_be_root        = false;
+	private static $show_in_sitetree = false;
+	private static $default_parent = "IssueHolder";
+	private static $can_be_root = false;
 
 	public function getArticleHolder() {
 		$holder = ArticleHolder::get()->First();
@@ -67,10 +68,10 @@ class Article extends Page {
 		//Tag and Featured tag fields - ArticleInfo tab
 		$tagField = TagField::create('Tags', 'All article tags:', ArticleTag::get(), $this->Tags())->setShouldLazyLoad(true);
 		$catField = DropdownField::create(
-			'FeaturedTagID',
-			'Featured tag (shows above the article\'s title)',
-			$this->Tags()->map('ID', 'Title')
-		)->setEmptyString('(No featured tag)');
+			'CategoryID',
+			'Category',
+			ArticleCategory::get()->map('ID', 'Title')
+		)->setEmptyString('(No Category)');
 
 		$fields->addFieldToTab('Root.Main', new UploadField('Image', 'Image (1920x1080 or 1280x720)'));
 		$fields->addFieldToTab('Root.ArticleInfo', $tagField);
@@ -103,7 +104,7 @@ class Article extends Page {
 
 		//Footnotes field - Footnotes tab
 		$footnoteFieldConfig = GridFieldConfig_RelationEditor::create();
-		$footnoteGridField   = new GridField('Footnotes', 'Footnotes', $this->Footnotes(), $footnoteFieldConfig);
+		$footnoteGridField = new GridField('Footnotes', 'Footnotes', $this->Footnotes(), $footnoteFieldConfig);
 		$fields->addFieldToTab('Root.Footnotes', $footnoteGridField);
 
 		//Responses field - Responses tab
@@ -122,8 +123,6 @@ class Article extends Page {
 class Article_Controller extends Page_Controller {
 
 	public function init() {
-
-	
 
 		parent::init();
 	}
