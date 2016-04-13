@@ -19,8 +19,6 @@ class Author extends Contributor {
 		)
 	);
 
-	private static $default_sort = 'SortOrder';
-
 	public function getCMSFields() {
 		$fields = parent::getCMSFields();
 		$fields->addFieldToTab('Root.Main', HTMLEditorField::create(
@@ -50,4 +48,8 @@ class Author extends Contributor {
 	public function Link() {
 		return 'author/'.$this->URLSegment;
 	}
+
+    public function Articles() {
+        return $this->getManyManyComponents('Articles')->sort('SortOrder');
+    }
 }

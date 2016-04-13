@@ -3,7 +3,7 @@ class Contributor extends DataObject {
 
 	private static $db = array(
 		'Name'                => 'Text',
-		'BiographicalDetails' => 'HTMLText',
+		'BiographicalDetails' => 'HTMLText'
 	);
 
 	private static $has_one = array(

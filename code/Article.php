@@ -75,19 +75,15 @@ class Article extends Page {
 
 		$fields->addFieldToTab('Root.Main', new UploadField('Image', 'Image (1920x1080 or 1280x720)'));
 		$fields->addFieldToTab('Root.ArticleInfo', $tagField);
-		if ($this->Tags()->First()) {
-			$fields->addFieldToTab('Root.ArticleInfo', $catField);
-		} else {
-			$fields->addFieldToTab('Root.ArticleInfo', new ReadonlyField('FeaturedTagReadonly', 'Featured tag (shows above article title)'));
-			$fields->addFieldToTab('Root.ArticleInfo', new LabelField('FeaturedTagLabel', ' Note: You must add tags and save this article before adding a featured tag.'));
-		}
+		$fields->addFieldToTab('Root.ArticleInfo', $catField);
+
 
 		//Author field - ArticleInfo tab
 		$authorFieldConfig = GridFieldConfig_RelationEditor::create();
 		$authorFieldConfig->addComponent(new GridFieldSortableRows('SortOrder'));
 
 		$authorGridField = new GridField('Authors', 'Authors', $this->Authors(), $authorFieldConfig);
-		$fields->addFieldToTab('Root.ArticleInfo', new LabelField('Search for an existing author (if they\'ve previously contributed to ILR) or add one above.'));
+		$fields->addFieldToTab('Root.ArticleInfo', new LabelField('Search for an existing author (if they\'ve previously contributed to ILR) or add an author to the website.'));
 		$fields->addFieldToTab('Root.ArticleInfo', $authorGridField);
 
 		//Joint Author Notes field - ArticleInfo tab
