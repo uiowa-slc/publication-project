@@ -26,7 +26,7 @@ class IssueHolder extends Page {
 	public function getVolumes() {
 
 		$volumeNumbers = array(); //this has to be an array
-		$issues = Issue::get();
+		$issues = Issue::get()->filter(array('ParentID' => $this->ID));
 		$allVolumes = new ArrayList();
 
 		//get all of the volume numbers
