@@ -39,6 +39,81 @@ class Issue extends Page {
 		return SiteTree::get()->filter('ParentID', $this->ID)->sort('RAND()');
 	}
 
+	public function IsFirstIssueInVolume(){
+		$issueTest = Issue::get()->filter(array(
+			'Volume' => $this->Volume,
+			'ParentID' => $this->ParentID,
+			'Number:LessThan' => $this->Number
+
+		))->First();
+		//Debug::show($issueTest);
+		if($issueTest){
+			return false;
+		}else{
+			return true;
+		}
+	}
+
+	public function IsLastIssueInVolume(){
+		$issueTest = Issue::get()->filter(array(
+			'Volume' => $this->Volume,
+			'ParentID' => $this->ParentID,
+			'Number:GreaterThan' => $this->Number
+
+		))->First();
+		if($issueTest){
+			return false;
+		}else{
+			return true;
+		}
+	}
+
+	public function PreviousIssue() {
+		if($this->IsFirstIssueInVolume()){
+			$issue = Issue::get()->filter(array(
+				'ClassName' => 'Issue',
+				'ParentID' => $this->ParentID,
+				'Volume:LessThan' => $this->Volume
+			))->sort(array('Number DESC', 'Volume DESC'))->First();
+		}else{
+
+			$issue = Issue::get()->filter(array(
+				'Volume' => $this->Volume,
+				'ParentID' => $this->ParentID,
+				'Number:LessThan' => $this->Number
+			))->sort('Number DESC')->First();
+		}
+
+		if($issue){
+			return $issue;
+		}else{
+			return false;
+		}
+	}
+
+	public function NextIssue() {
+		if($this->IsLastIssueInVolume()){
+			//echo "this is the last issue in a voluem";
+			$issue = Issue::get()->filter(array(
+				'ClassName' => 'Issue',
+				'ParentID' => $this->ParentID,
+				'Volume:GreaterThan' => $this->Volume
+			))->sort(array('Number DESC', 'Volume DESC'))->First();
+		}else{
+			$issue = Issue::get()->filter(array(
+				'Volume' => $this->Volume,
+				'ParentID' => $this->ParentID,
+				'Number:GreaterThan' => $this->Number
+			))->sort('Number ASC')->First();
+		}
+
+		if($issue){
+			return $issue;
+		}else{
+			return false;
+		}
+	}
+
 }
 
 class Issue_Controller extends Page_Controller {
