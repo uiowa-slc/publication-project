@@ -11,7 +11,7 @@ class ArticleCategory extends DataObject {
 	/**
 	 * @var array
 	 */
-	private static $belongs_many_many = array(
+	private static $has_many = array(
 		'Articles' => 'Article',
 	);
 

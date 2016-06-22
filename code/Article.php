@@ -66,7 +66,7 @@ class Article extends Page {
 		$fields->addFieldToTab('Root.Main', $titleField);
 
 		//Tag and Featured tag fields - ArticleInfo tab
-		$tagField = TagField::create('Tags', 'All article tags:', ArticleTag::get(), $this->Tags())->setShouldLazyLoad(true);
+		$tagField = TagField::create('Tags', 'Tags:', ArticleTag::get(), $this->Tags())->setShouldLazyLoad(true);
 		$catField = DropdownField::create(
 			'CategoryID',
 			'Category',
