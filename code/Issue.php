@@ -70,6 +70,7 @@ class Issue extends Page {
 
 	public function PreviousIssue() {
 		if($this->IsFirstIssueInVolume()){
+			// echo "this is the first issue in a volume";
 			$issue = Issue::get()->filter(array(
 				'ClassName' => 'Issue',
 				'ParentID' => $this->ParentID,
@@ -98,13 +99,13 @@ class Issue extends Page {
 				'ClassName' => 'Issue',
 				'ParentID' => $this->ParentID,
 				'Volume:GreaterThan' => $this->Volume
-			))->sort(array('Number DESC', 'Volume DESC'))->First();
+			))->sort(array('Number DESC', 'Volume DESC'))->Last();
 		}else{
 			$issue = Issue::get()->filter(array(
 				'Volume' => $this->Volume,
 				'ParentID' => $this->ParentID,
 				'Number:GreaterThan' => $this->Number
-			))->sort('Number ASC')->First();
+			))->sort('Number DESC')->Last();
 		}
 
 		if($issue){
