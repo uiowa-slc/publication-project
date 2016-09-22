@@ -115,6 +115,27 @@ class Issue extends Page {
 		}
 	}
 
+	public function Authors(){
+		$articles = $this->Children();
+		$authors = array();
+
+		foreach($articles as $article){
+			$articleAuthors = $article->Authors();
+
+			foreach($articleAuthors as $articleAuthor){
+				array_push($authors, $articleAuthor);
+			}
+		}
+		shuffle($authors);
+
+
+
+		$authorsArrayList = new ArrayList($authors);
+
+		return $authorsArrayList;
+
+	}
+
 }
 
 class Issue_Controller extends Page_Controller {
