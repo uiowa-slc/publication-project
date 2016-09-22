@@ -1,6 +1,3 @@
-Controller:
-  extensions:
-    - SS_MinifiedResponseExtension
 Page:
   extensions:
     - PublicationPage
