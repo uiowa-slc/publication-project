@@ -61,6 +61,8 @@ class Article extends Page {
 		//Main Content tab.
 		$fields->removeByName('Content');
 		$fields->removeByName('Metadata');
+		$fields->addFieldToTab('Root.Main', new CheckboxField('IsExcerpt', 'This article is a stub (a short version or simply a link to the PDF).'));
+
 		$titleField = new HTMLEditorField('FormattedTitle', 'Formatted Article Title (only fill out if the article title uses bold, italics, etc.)');
 		$titleField->setRows(1);
 		$fields->addFieldToTab('Root.Main', $titleField);
@@ -95,7 +97,6 @@ class Article extends Page {
 		//Article summary/expanded/downloadable text - Article Text tab
 
 		$fields->addFieldToTab('Root.ArticleText', new UploadField('PrintableArticle', 'Downloadable/printable version of the article'));
-		$fields->addFieldToTab('Root.ArticleText', new CheckboxField('IsExcerpt', 'This article is a stub or short version.'));
 		$fields->addFieldToTab('Root.ArticleText', HTMLEditorField::create('Content', 'Article body')->setRows(50));
 
 		//Footnotes field - Footnotes tab
