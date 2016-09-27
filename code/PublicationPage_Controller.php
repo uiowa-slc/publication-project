@@ -37,7 +37,10 @@ class PublicationPage_Controller extends Extension {
 		$keyword = DBField::create_field('Text', $form->getSearchQuery());
 
 		$contributors = new ArrayList();
-		$contributors = $this->contributorSearch($keyword->getValue());
+
+		$keywordTrimmed = trim($keyword->getValue());
+
+		$contributors = $this->contributorSearch($keywordTrimmed);
 
 		$data = array(
 			'Contributors' => $contributors,
