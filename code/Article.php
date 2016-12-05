@@ -24,14 +24,15 @@ class Article extends Page {
 
 	private static $plural_name = 'Articles';
 
-	private static $belongs_many_many = array(
-		'Authors' => 'Author',
-	);
-	private static $many_many = array(
-
+	private static $many_many = [
+		'Contributors' => [
+			'through' => 'Author',
+			'from' => 'Article',
+			'to' => 'Contributor'
+		],
 		'Tags' => 'ArticleTag',
 		'Footnotes' => 'Footnote',
-	);
+	];
 	private static $listing_page_class = 'Issue';
 	private static $show_in_sitetree = false;
 	private static $default_parent = "IssueHolder";
