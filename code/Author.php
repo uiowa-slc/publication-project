@@ -1,14 +1,22 @@
 <?php
-class Author extends DataObject {
+class Author extends Contributor {
 
 	private static $db = array(
-		'Note' => 'HTMLText'
+
 	);
 
 	private static $has_one = array(
-		'Contributor' => 'Contributor',
-		'Article' => 'Article'
 
+	);
+
+	private static $many_many = array(
+		'Articles' => 'Article',
+	);
+	private static $many_many_extraFields = array(
+		'Articles'     => array(
+			'ArticleNote' => 'HTMLText',
+			'SortOrder'   => 'Int',
+		)
 	);
 
 	public function getCMSFields() {
