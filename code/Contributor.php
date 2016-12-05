@@ -10,9 +10,9 @@ class Contributor extends DataObject {
 		'Image' => 'Image',
 	);
 
-	  private static $belongs_many_many = [
-	    "Articles" => "Article",
-	  ];
+	private static $many_many = array(
+
+	);
 
 	/**
 	 * @var array
