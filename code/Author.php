@@ -19,6 +19,8 @@ class Author extends Contributor {
 		)
 	);
 
+	private static $default_sort = 'SortOrder';
+
 	public function getCMSFields() {
 		$fields = parent::getCMSFields();
 		$fields->addFieldToTab('Root.Main', HTMLEditorField::create(
