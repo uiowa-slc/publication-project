@@ -19,7 +19,7 @@ class Author extends Contributor {
 		)
 	);
 
-	private static $default_sort = 'SortOrder';
+	//private static $default_sort = 'SortOrder';
 
 	public function getCMSFields() {
 		$fields = parent::getCMSFields();
@@ -41,6 +41,8 @@ class Author extends Contributor {
 
 		return $asterisks;
 	}
+
+
 
 	/**
 	 * Returns a relative URL for the tag link.

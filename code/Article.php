@@ -55,6 +55,12 @@ class Article extends Page {
 
 	}
 
+	public function getSortedAuthors(){
+		
+		$authors = $this->obj('Authors')->sort('SortOrder');
+		return $authors;
+	}
+
 	public function getCMSFields() {
 		$fields = parent::getCMSFields();
 
