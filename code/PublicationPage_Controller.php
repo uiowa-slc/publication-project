@@ -34,23 +34,30 @@ class PublicationPage_Controller extends Extension {
 		return $form;
 	}
 	public function results($data, $form, $request) {
-		$keyword = DBField::create_field('Text', $form->getSearchQuery());
+		$templateData = array();
+		if(!$form->getSearchQuery()){
+			return $this->owner->renderWith(array('Page_results', 'Page'));
 
-		$contributors = new ArrayList();
+		}
+			$keyword = DBField::create_field('Text', $form->getSearchQuery());
+			
+			$contributors = new ArrayList();
 
-		$keywordTrimmed = trim($keyword->getValue());
+			$keywordTrimmed = trim($keyword->getValue());
 
-		$contributors = $this->contributorSearch($keywordTrimmed);
 
-		$data = array(
-			'Contributors' => $contributors,
-			'Results' => $form->getResults(),
-			'Query' => DBField::create_field('Text', $form->getSearchQuery()),
-			'Title' => _t('SearchForm.SearchResults', 'Search Results'),
-		);
+			$contributors = $this->contributorSearch($keywordTrimmed);
 
-		// Debug::show($data);
-		return $this->owner->customise($data)->renderWith(array('Page_results', 'Page'));
+			$templateData = array(
+				'Contributors' => $contributors,
+				'Results' => $form->getResults(),
+				'Query' => DBField::create_field('Text', $form->getSearchQuery()),
+				'Title' => _t('SearchForm.SearchResults', 'Search Results'),
+			);
+
+			// Debug::show($data);
+			return $this->owner->customise($templateData)->renderWith(array('Page_results', 'Page'));
+		
 	}
 
 	public function contributorSearch($keyword) {
