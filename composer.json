@@ -29,7 +29,7 @@
                 "silverstripe/staticpublisher" : "*",
                 "normann/gridfieldpaginatorwithshowall" : "*",
                 "md/silverstripe-flickr" : "*",
-                "md/division-analytics" : "*",
+                "md/division-analytics" : "1.*",
                 "silverstripe-australia/gridfieldextensions" : "*",
                 "jonom/silverstripe-betternavigator": "3.*",
                 "thisisbd/silverstripe-maintenance-mode" : "*"
