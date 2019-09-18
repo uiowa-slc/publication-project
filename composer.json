@@ -36,32 +36,40 @@
       "bummzack/sortablefile" : "^2.0",
       "silverstripe/sharedraftcontent" :"*"
     },
-   "repositories":[
-    {
-       "type":"vcs",
-       "url":"https://github.com/StudentLifeMarketingAndDesign/uiowa-bar"
-    },
-    {
-       "type":"vcs",
-       "url":"https://github.com/StudentLifeMarketingAndDesign/silverstripe-saml"
-    },
-    {
-        "type": "vcs",
-        "url": "https://github.com/StudentLifeMarketingAndDesign/silverstripe-maintenance-mode"
-    },
-    {
-       "type":"vcs",
-       "url":"https://github.com/StudentLifeMarketingAndDesign/division-analytics"
-    },
-    {
-       "type":"vcs",
-       "url":"https://github.com/StudentLifeMarketingAndDesign/ac-json-events"
-    },
-    {
-        "type": "vcs",
-        "url": "https://github.com/PlatoCreative/silverstripe-typekit"
-    }
-   ],
+     "repositories": [
+        {
+            "type": "vcs",
+            "url": "https://github.com/StudentLifeMarketingAndDesign/division-project"
+        },
+        {
+            "type": "vcs",
+            "url": "https://github.com/StudentLifeMarketingAndDesign/division-analytics"
+        },
+        {
+            "type": "vcs",
+            "url": "https://github.com/StudentLifeMarketingAndDesign/silverstripe-maintenance-mode"
+        },
+        {
+            "type": "vcs",
+            "url": "https://github.com/StudentLifeMarketingAndDesign/silverstripe-staticpublishqueue"
+        },
+        {
+            "type": "vcs",
+            "url": "https://github.com/StudentLifeMarketingAndDesign/uiowa-bar"
+        },
+        {
+            "type": "vcs",
+            "url": "https://github.com/StudentLifeMarketingAndDesign/ac-json-events"
+        },
+        {
+            "type": "vcs",
+            "url": "https://github.com/StudentLifeMarketingAndDesign/silverstripe-flickr"
+        },
+        {
+            "type": "vcs",
+            "url": "https://github.com/StudentLifeMarketingAndDesign/silverstripe-saml"
+        }
+    ],   
    "extra": {
         "expose": [
           "src/favicons",
