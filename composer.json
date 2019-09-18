@@ -1,60 +1,72 @@
 {
-        "name": "md/publication-project",
-        "description": "Publication Project Code and default templates",
-        "type": "silverstripe-module",
-        "minimum-stability": "dev",
-        "require": {
-                "php": ">=5.3.2",
-                "silverstripe/cms": "3.6.7",
-                "silverstripe/framework": "3.6.7",
-                "silverstripe/reports": "3.6.7",
-                "silverstripe/siteconfig": "3.6.7",
-                "silverstripe/installer": "*",
-                "silverstripe-themes/simple": "*",
-                "undefinedoffset/sortablegridfield": "*",
-                "unclecheese/betterbuttons": "1.3.*",
-                "unclecheese/eventcalendar": "1.0.x",
-                "colymba/gridfield-bulk-editing-tools": "*",
-                "silverstripe/blog": "*",
-                "silverstripe/widgets": "*",
-                "silverstripe/userforms": "*",
-                "silverstripe/recaptcha": "*",
-                "silverstripe/mathspamprotection" : "*",
-                "simplepie/simplepie": "*",
-                "silverstripe/googlesitemaps": "*",
-                "silverstripe/timepickerfield": "*",
-                "jonom/focuspoint" : "*",
-                "md/division-bar": "*",
-                "silverstripe-australia/gridfieldextensions" : "*",
-                "silverstripe/staticpublisher" : "*",
-                "normann/gridfieldpaginatorwithshowall" : "*",
-                "md/silverstripe-flickr" : "*",
-                "md/division-analytics" : "1.*",
-                "silverstripe-australia/gridfieldextensions" : "*",
-                "jonom/silverstripe-betternavigator": "3.*",
-                "thisisbd/silverstripe-maintenance-mode" : "*"
-        },
-        "repositories": [
-        {
-            "type": "vcs",
-            "url": "https://github.com/StudentLifeMarketingAndDesign/division-bar"       
-        },
-        {
-            "type": "vcs",
-            "url": "https://github.com/StudentLifeMarketingAndDesign/division-analytics"       
-        },
-        {
-            "type": "vcs",
-            "url": "https://github.com/StudentLifeMarketingAndDesign/rss-display"       
-        },
-        {
-            "type": "vcs",
-            "url": "https://github.com/StudentLifeMarketingAndDesign/ac-json-events"       
-        },
-        {
-            "type": "vcs",
-            "url": "https://github.com/StudentLifeMarketingAndDesign/silverstripe-flickr"
-        }
-    ]
-
+   "name":"md/publication-project",
+   "description":"The University of Iowa Division of Student Life Project Code and Theme",
+    "type": "silverstripe-vendormodule",
+   "minimum-stability":"dev",
+   "require":{
+      "php": ">=5.5",
+      "silverstripe/framework": "4.4.1",
+      "silverstripe/recipe-plugin": "*",
+      "silverstripe/recipe-cms": "*",
+      "silverstripe/reports": "*",
+      "silverstripe/installer": "*",
+      "silverstripe/config": "*",
+      "undefinedoffset/sortablegridfield": "*",
+      "undefinedoffset/silverstripe-nocaptcha":"*",
+      "edgarindustries/youtubefield" : "*",
+      "silverstripe/tagfield": "*",
+      "silverstripe/blog": "*",
+      "silverstripe/spamprotection" : "3.*",
+      "silverstripe/widgets": "*",
+      "silverstripe/userforms": "*",
+      "silverstripe/googlesitemaps": "*",
+      "silverstripe-australia/gridfieldextensions" : "*",
+      "silverstripe/asset-admin": "*",
+      "dnadesign/silverstripe-elemental": "3.*",
+      "gorriecoe/silverstripe-webfonts" : "*",
+      "md/ac-json-events":"dev-ss4.x-ui",
+      "md/division-analytics": "1.2.x",
+      "unclecheese/display-logic" : "dev-master",
+      "md/saml" : "dev-md",
+      "jonom/focuspoint" : "*",
+      "jonom/silverstripe-betternavigator" : "*",
+      "md/uiowa-bar": "1.2.x",
+      "md/silverstripe-maintenance-mode": "dev-master",
+      "colymba/gridfield-bulk-editing-tools" : "dev-master",
+      "bummzack/sortablefile" : "^2.0",
+      "silverstripe/sharedraftcontent" :"*"
+    },
+   "repositories":[
+    {
+       "type":"vcs",
+       "url":"https://github.com/StudentLifeMarketingAndDesign/uiowa-bar"
+    },
+    {
+       "type":"vcs",
+       "url":"https://github.com/StudentLifeMarketingAndDesign/silverstripe-saml"
+    },
+    {
+        "type": "vcs",
+        "url": "https://github.com/StudentLifeMarketingAndDesign/silverstripe-maintenance-mode"
+    },
+    {
+       "type":"vcs",
+       "url":"https://github.com/StudentLifeMarketingAndDesign/division-analytics"
+    },
+    {
+       "type":"vcs",
+       "url":"https://github.com/StudentLifeMarketingAndDesign/ac-json-events"
+    },
+    {
+        "type": "vcs",
+        "url": "https://github.com/PlatoCreative/silverstripe-typekit"
+    }
+   ],
+   "extra": {
+        "expose": [
+          "src/favicons",
+          "src/images",
+          "cms-icons"
+        ]
+    }
 }
