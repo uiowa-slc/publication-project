@@ -1,4 +1,10 @@
 <?php
+
+use SilverStripe\Assets\Image;
+use SilverStripe\Forms\TextField;
+use SilverStripe\ORM\FieldType\DBDate;
+use SilverStripe\CMS\Model\SiteTree;
+use SilverStripe\ORM\ArrayList;
 class Issue extends Page {
 
 	private static $db = array(
@@ -9,7 +15,7 @@ class Issue extends Page {
 	);
 
 	private static $has_one = array(
-		"CoverImage" => "Image",
+		"CoverImage" => Image::class,
 	);
 
 	private static $plural_name = 'Issues';
@@ -26,7 +32,7 @@ class Issue extends Page {
 		$fields->removeByName('Content');
 		$fields->addFieldToTab('Root.Main', new TextField('Volume'));
 		$fields->addFieldToTab('Root.Main', new TextField('Number', 'Issue Number'));
-		$fields->addFieldToTab('Root.Main', new TextField('Date', 'Issue Date'));
+		$fields->addFieldToTab('Root.Main', new TextField(DBDate::class, 'Issue Date'));
 
 		return $fields;
 	}
@@ -134,14 +140,6 @@ class Issue extends Page {
 
 		return $authorsArrayList;
 
-	}
-
-}
-
-class Issue_Controller extends Page_Controller {
-
-	public function init() {
-		parent::init();
 	}
 
 }

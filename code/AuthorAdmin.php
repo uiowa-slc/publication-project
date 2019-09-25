@@ -1,5 +1,7 @@
 <?php
 
+use SilverStripe\Admin\ModelAdmin;
+
 class AuthorAdmin extends ModelAdmin {
 
 	private static $menu_title = 'Authors';

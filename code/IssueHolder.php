@@ -1,4 +1,6 @@
 <?php
+
+use SilverStripe\ORM\ArrayList;
 class IssueHolder extends Page {
 
 	private static $db = array(
@@ -57,14 +59,6 @@ class IssueHolder extends Page {
 		}
 		//Debug::show($allVolumes);
 		return $allVolumes;
-	}
-
-}
-
-class IssueHolder_Controller extends Page_Controller {
-
-	public function init() {
-		parent::init();
 	}
 
 }

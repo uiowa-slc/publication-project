@@ -1,4 +1,6 @@
 <?php
+
+use SilverStripe\Forms\HTMLEditor\HTMLEditorField;
 class Author extends Contributor {
 
 	private static $db = array(

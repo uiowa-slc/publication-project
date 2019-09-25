@@ -1,5 +1,7 @@
 <?php
 
+use SilverStripe\Admin\ModelAdmin;
+
 class ArticleCategoryAdmin extends ModelAdmin {
 
 	private static $menu_title = 'Categories';

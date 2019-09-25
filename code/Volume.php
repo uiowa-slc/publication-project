@@ -1,5 +1,7 @@
 <?php
 
+use SilverStripe\ORM\DataObject;
+
 class Volume extends DataObject {
 
 	private static $casting = array(

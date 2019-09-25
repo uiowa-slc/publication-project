@@ -1,4 +1,16 @@
 <?php
+
+use SilverStripe\Forms\TextField;
+use SilverStripe\Forms\FieldList;
+use SilverStripe\Forms\FormAction;
+use SilverStripe\CMS\Search\SearchForm;
+use SilverStripe\CMS\Model\SiteTree;
+use SilverStripe\ORM\FieldType\DBField;
+use SilverStripe\ORM\ArrayList;
+use SilverStripe\Control\Session;
+use SilverStripe\View\ArrayData;
+use SilverStripe\Control\Director;
+use SilverStripe\Core\Extension;
 class PublicationPage_Controller extends Extension {
 
 	/**
@@ -29,8 +41,8 @@ class PublicationPage_Controller extends Extension {
 		$actions = new FieldList(
 			new FormAction('results', _t('SearchForm.GO', 'Go'))
 		);
-		$form = SearchForm::create($this->owner, 'SearchForm', $fields, $actions);
-		$form->classesToSearch(array('SiteTree'));
+		$form = SearchForm::create($this->owner, SearchForm::class, $fields, $actions);
+		$form->classesToSearch(array(SiteTree::class));
 		return $form;
 	}
 	public function results($data, $form, $request) {
