@@ -1,5 +1,13 @@
 <?php
 
+use SilverStripe\Assets\Image;
+use SilverStripe\Forms\FieldList;
+use SilverStripe\AssetAdmin\Forms\UploadField;
+use SilverStripe\Forms\HTMLEditor\HTMLEditorField;
+use SilverStripe\Forms\TextareaField;
+use SilverStripe\Forms\TextField;
+use SilverStripe\ORM\DataExtension;
+
 class SiteConfigExtension extends DataExtension {
 
 	static $db = array(
@@ -14,7 +22,7 @@ class SiteConfigExtension extends DataExtension {
 	);
 
 	static $has_one = array(
-		'PosterImage' => 'Image'
+		'PosterImage' => Image::class
 	);
 
 	public function updateCMSFields(FieldList $fields) {
@@ -33,13 +41,6 @@ class SiteConfigExtension extends DataExtension {
 		$fields->addFieldToTab('Root.Main', new TextField('YouTubeLink', 'YouTube Account URL'));
 
 		return $fields;
-	}
-
-}
-class SiteConfigExtensionPage_Controller extends Page_Controller {
-
-	public function init() {
-		parent::init();
 	}
 
 }

@@ -1,4 +1,9 @@
 <?php
+
+use SilverStripe\Assets\Image;
+use SilverStripe\Forms\TextField;
+use SilverStripe\Forms\HTMLEditor\HTMLEditorField;
+use SilverStripe\ORM\DataObject;
 class Contributor extends DataObject {
 
 	private static $db = array(
@@ -7,7 +12,7 @@ class Contributor extends DataObject {
 	);
 
 	private static $has_one = array(
-		'Image' => 'Image',
+		'Image' => Image::class,
 	);
 
 	private static $many_many = array(
@@ -29,7 +34,7 @@ class Contributor extends DataObject {
 
 		$fields->removeByName('Content');
 		$fields->removeByName('Metadata');
-		$fields->removeByName('Image');
+		$fields->removeByName(Image::class);
 		$fields->removeByName('Articles');
 
 		$fields->addFieldToTab('Root.Main', new TextField('Name'));

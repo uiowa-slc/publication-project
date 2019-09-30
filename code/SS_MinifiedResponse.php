@@ -1,4 +1,9 @@
 <?php
+
+use SilverStripe\CMS\Controllers\ContentController;
+use SilverStripe\Core\Extension;
+use SilverStripe\Core\Config\Config;
+use SilverStripe\Control\HTTPResponse;
 /**
  * Created by Nivanka Fonseka (nivanka@silverstripers.com).
  * Date: 10/24/14
@@ -24,7 +29,7 @@ class SS_MinifiedResponseExtension extends Extension {
 
 
 	function onBeforeInit(){
-		if(is_a($this->owner, 'ContentController')){
+		if(is_a($this->owner, ContentController::class)){
 			$this->owner->response = new SS_MinifiedResponse();
 		}
 	}
@@ -32,7 +37,7 @@ class SS_MinifiedResponseExtension extends Extension {
 
 }
 
-class SS_MinifiedResponse extends SS_HTTPResponse {
+class SS_MinifiedResponse extends HTTPResponse {
 
 
 	private static $clean_js_comments = true;

@@ -1,5 +1,8 @@
 <?php
 
+use SilverStripe\View\ArrayData;
+use SilverStripe\CMS\Controllers\ContentController;
+
 class Author_Controller extends ContentController {
 
 	private static $allowed_actions = array(

@@ -5,12 +5,8 @@
    "minimum-stability":"dev",
    "require":{
       "php": ">=5.5",
-      "silverstripe/framework": "4.4.1",
-      "silverstripe/recipe-plugin": "*",
-      "silverstripe/recipe-cms": "*",
-      "silverstripe/reports": "*",
-      "silverstripe/installer": "*",
-      "silverstripe/config": "*",
+      "silverstripe/recipe-plugin": "^1.2",
+      "silverstripe/recipe-cms": "4.4.*@stable",
       "undefinedoffset/sortablegridfield": "*",
       "undefinedoffset/silverstripe-nocaptcha":"*",
       "edgarindustries/youtubefield" : "*",
@@ -21,60 +17,57 @@
       "silverstripe/userforms": "*",
       "silverstripe/googlesitemaps": "*",
       "silverstripe-australia/gridfieldextensions" : "*",
-      "silverstripe/asset-admin": "*",
       "dnadesign/silverstripe-elemental": "3.*",
       "gorriecoe/silverstripe-webfonts" : "*",
       "md/ac-json-events":"dev-ss4.x-ui",
       "md/division-analytics": "1.2.x",
+      "md/deploy-helper": "*",
       "unclecheese/display-logic" : "dev-master",
       "md/saml" : "dev-md",
       "jonom/focuspoint" : "*",
-      "jonom/silverstripe-betternavigator" : "*",
+      "jonom/silverstripe-betternavigator" : "4.*",
       "md/uiowa-bar": "1.2.x",
       "md/silverstripe-maintenance-mode": "dev-master",
       "colymba/gridfield-bulk-editing-tools" : "dev-master",
       "bummzack/sortablefile" : "^2.0",
       "silverstripe/sharedraftcontent" :"*"
     },
-     "repositories": [
-        {
-            "type": "vcs",
-            "url": "https://github.com/StudentLifeMarketingAndDesign/division-project"
-        },
-        {
-            "type": "vcs",
-            "url": "https://github.com/StudentLifeMarketingAndDesign/division-analytics"
-        },
-        {
-            "type": "vcs",
-            "url": "https://github.com/StudentLifeMarketingAndDesign/silverstripe-maintenance-mode"
-        },
-        {
-            "type": "vcs",
-            "url": "https://github.com/StudentLifeMarketingAndDesign/silverstripe-staticpublishqueue"
-        },
-        {
-            "type": "vcs",
-            "url": "https://github.com/StudentLifeMarketingAndDesign/uiowa-bar"
-        },
-        {
-            "type": "vcs",
-            "url": "https://github.com/StudentLifeMarketingAndDesign/ac-json-events"
-        },
-        {
-            "type": "vcs",
-            "url": "https://github.com/StudentLifeMarketingAndDesign/silverstripe-flickr"
-        },
-        {
-            "type": "vcs",
-            "url": "https://github.com/StudentLifeMarketingAndDesign/silverstripe-saml"
-        }
-    ],   
+   "repositories":[
+    {
+       "type":"vcs",
+       "url":"https://github.com/StudentLifeMarketingAndDesign/uiowa-bar"
+    },
+    {
+       "type":"vcs",
+       "url":"https://github.com/StudentLifeMarketingAndDesign/silverstripe-saml"
+    },
+    {
+        "type": "vcs",
+        "url": "https://github.com/StudentLifeMarketingAndDesign/silverstripe-maintenance-mode"
+    },
+    {
+       "type":"vcs",
+       "url":"https://github.com/StudentLifeMarketingAndDesign/division-analytics"
+    },
+    {
+       "type":"vcs",
+       "url":"https://github.com/StudentLifeMarketingAndDesign/deploy-helper"
+    },
+    {
+       "type":"vcs",
+       "url":"https://github.com/StudentLifeMarketingAndDesign/ac-json-events"
+    },
+    {
+        "type": "vcs",
+        "url": "https://github.com/PlatoCreative/silverstripe-typekit"
+    }
+   ],
    "extra": {
         "expose": [
           "src/favicons",
           "src/images",
-          "cms-icons"
+          "cms-icons",
+          "css"
         ]
     }
 }

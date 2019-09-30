@@ -1,4 +1,17 @@
 <?php
+
+use SilverStripe\Assets\Image;
+use SilverStripe\Assets\File;
+use SilverStripe\Forms\CheckboxField;
+use SilverStripe\Forms\HTMLEditor\HTMLEditorField;
+use SilverStripe\TagField\TagField;
+use SilverStripe\Forms\DropdownField;
+use SilverStripe\AssetAdmin\Forms\UploadField;
+use SilverStripe\Forms\GridField\GridFieldConfig_RelationEditor;
+use SilverStripe\Forms\GridField\GridField;
+use SilverStripe\Forms\LabelField;
+use SilverStripe\Forms\GridField\GridFieldAddNewButton;
+use UndefinedOffset\SortableGridField\Forms\GridFieldSortableRows;
 class Article extends Page {
 	private static $db = array(
 
@@ -11,8 +24,8 @@ class Article extends Page {
 	);
 
 	private static $has_one = array(
-		'Image' => 'Image',
-		'PrintableArticle' => 'File',
+		'Image' => Image::class,
+		'PrintableArticle' => File::class,
 		'ResponseTo' => 'Article',
 		'FeaturedTag' => 'ArticleTag',
 		'Category' => 'ArticleCategory',
@@ -81,7 +94,7 @@ class Article extends Page {
 			ArticleCategory::get()->map('ID', 'Title')
 		)->setEmptyString('(No Category)');
 
-		$fields->addFieldToTab('Root.Main', new UploadField('Image', 'Image (1920x1080 or 1280x720)'));
+		$fields->addFieldToTab('Root.Main', new UploadField(Image::class, 'Image (1920x1080 or 1280x720)'));
 		$fields->addFieldToTab('Root.ArticleInfo', $tagField);
 		$fields->addFieldToTab('Root.ArticleInfo', $catField);
 
@@ -112,22 +125,13 @@ class Article extends Page {
 
 		//Responses field - Responses tab
 		$responseFieldConfig = GridFieldConfig_RelationEditor::create();
-		$responseFieldConfig->removeComponentsByType($responseFieldConfig->getComponentByType('GridFieldAddNewButton'));
+		$responseFieldConfig->removeComponentsByType($responseFieldConfig->getComponentByType(GridFieldAddNewButton::class));
 		$responseGridField = new GridField('Responses', 'Responses', $this->Responses(), $responseFieldConfig);
 
 		$fields->addFieldToTab('Root.Responses', $responseGridField);
 
 		// Return fields
 		return $fields;
-	}
-
-}
-
-class Article_Controller extends Page_Controller {
-
-	public function init() {
-
-		parent::init();
 	}
 
 }
