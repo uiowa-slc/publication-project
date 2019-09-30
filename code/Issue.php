@@ -34,7 +34,7 @@ class Issue extends Page {
 		$fields->removeByName('Content');
 		$fields->addFieldToTab('Root.Main', new TextField('Volume'));
 		$fields->addFieldToTab('Root.Main', new TextField('Number', 'Issue Number'));
-		$fields->addFieldToTab('Root.Main', new TextField('Date', 'Issue Date'));
+		$fields->addFieldToTab('Root.Main', new TextField(DBDate::class, 'Issue Date'));
 
 		return $fields;
 	}
