@@ -24,7 +24,7 @@ class IssueHolder extends Page {
 		$list = $this->Children()->sort(array('Volume' => 'DESC', 'Number' => 'DESC'));
 		return $list;
 	}
-
+	//needs to be in issue:
 	public function getVolumes() {
 
 		$volumeNumbers = array(); //this has to be an array
