@@ -29,12 +29,12 @@ class Issue extends Page {
 
 	//private static $icon = array("mysite/images/tree/toc","file");
 
-	function getCMSFields() {
+	public function getCMSFields() {
 		$fields = parent::getCMSFields();
 		$fields->removeByName('Content');
 		$fields->addFieldToTab('Root.Main', new TextField('Volume'));
 		$fields->addFieldToTab('Root.Main', new TextField('Number', 'Issue Number'));
-		$fields->addFieldToTab('Root.Main', new TextField('IssueDate', 'Issue Date'));
+		$fields->addFieldToTab('Root.Main', new TextField('Date', 'Issue Date'));
 
 		return $fields;
 	}
