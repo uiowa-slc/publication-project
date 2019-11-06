@@ -84,6 +84,7 @@ class Article extends Page {
 
 		$titleField = new HTMLEditorField('FormattedTitle', 'Formatted Article Title (only fill out if the article title uses bold, italics, etc.)');
 		$titleField->setRows(1);
+		$titleField->addExtraClass('stacked');
 		$fields->addFieldToTab('Root.Main', $titleField);
 
 		//Tag and Featured tag fields - ArticleInfo tab
@@ -108,15 +109,15 @@ class Article extends Page {
 		$fields->addFieldToTab('Root.ArticleInfo', $authorGridField);
 
 		//Joint Author Notes field - ArticleInfo tab
-		$fields->addFieldToTab('Root.ArticleInfo', HTMLEditorField::create('JointAuthorNotes', 'Joint Author Notes')->setRows(2));
+		$fields->addFieldToTab('Root.ArticleInfo', HTMLEditorField::create('JointAuthorNotes', 'Joint Author Notes')->setRows(2)->addExtraClass('stacked'));
 
 		//Citation field - ArticleInfo tab
-		$fields->addFieldToTab('Root.ArticleInfo', HTMLEditorField::create('Citation', 'Citation')->setRows(1));
+		$fields->addFieldToTab('Root.ArticleInfo', HTMLEditorField::create('Citation', 'Citation')->setRows(1)->addExtraClass('stacked'));
 
 		//Article summary/expanded/downloadable text - Article Text tab
 
 		$fields->addFieldToTab('Root.ArticleText', new UploadField('PrintableArticle', 'Downloadable/printable version of the article'));
-		$fields->addFieldToTab('Root.ArticleText', HTMLEditorField::create('Content', 'Article body')->setRows(50));
+		$fields->addFieldToTab('Root.ArticleText', HTMLEditorField::create('Content', 'Article body')->setRows(50)->addExtraClass('stacked'));
 
 		//Footnotes field - Footnotes tab
 		$footnoteFieldConfig = GridFieldConfig_RelationEditor::create();
