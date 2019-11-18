@@ -12,7 +12,7 @@
       "edgarindustries/youtubefield" : "*",
       "silverstripe/tagfield": "*",
       "silverstripe/blog": "*",
-      "silverstripe/spamprotection" : "3.*",
+      "silverstripe/spamprotection" : "*",
       "silverstripe/widgets": "*",
       "silverstripe/userforms": "*",
       "silverstripe/googlesitemaps": "*",
