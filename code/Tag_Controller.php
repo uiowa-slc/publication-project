@@ -3,7 +3,7 @@
 use SilverStripe\View\ArrayData;
 use SilverStripe\CMS\Controllers\ContentController;
 
-class Tag_Controller extends ContentController {
+class TagController extends ContentController {
 	
 	private static $allowed_actions = array(
 		'tag'

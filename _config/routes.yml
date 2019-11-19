@@ -1,9 +1,11 @@
 ---
-Name: mysiteroutes
-After: framework/routes#coreroutes
+Name: approutes
+After:
+  - '#rootroutes'
+  - '#coreroutes'
 ---
-Director:
-    rules:
-        'tag': 'Tag_Controller'
-        'author': 'Author_Controller'
-        'category': 'Category_Controller'
+SilverStripe\Control\Director:
+  rules:
+    'tag': 'TagController'
+    'author': 'AuthorController'
+    'category': 'CategoryController'
