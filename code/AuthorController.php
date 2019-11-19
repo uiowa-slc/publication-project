@@ -3,7 +3,7 @@
 use SilverStripe\View\ArrayData;
 use SilverStripe\CMS\Controllers\ContentController;
 
-class AuthorController extends ContentController {
+class AuthorController extends PageController {
 
 	private static $allowed_actions = array(
 		'author',
