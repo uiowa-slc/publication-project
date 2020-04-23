@@ -30,6 +30,11 @@ class Article extends Page {
 		'FeaturedTag' => 'ArticleTag',
 		'Category' => 'ArticleCategory',
 	);
+
+	private static $owns = array(
+		'PrintableArticle'
+	);
+
 	private static $has_many = array(
 		'Responses' => 'Article',
 		'Footnotes' => 'Footnote',
