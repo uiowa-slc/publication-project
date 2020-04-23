@@ -32,7 +32,8 @@ class Article extends Page {
 	);
 
 	private static $owns = array(
-		'PrintableArticle'
+		'PrintableArticle',
+		'Image'
 	);
 
 	private static $has_many = array(
