@@ -1,17 +1,18 @@
 <?php
 
-use SilverStripe\Assets\Image;
-use SilverStripe\Assets\File;
-use SilverStripe\Forms\CheckboxField;
-use SilverStripe\Forms\HTMLEditor\HTMLEditorField;
-use SilverStripe\TagField\TagField;
-use SilverStripe\Forms\DropdownField;
 use SilverStripe\AssetAdmin\Forms\UploadField;
-use SilverStripe\Forms\GridField\GridFieldConfig_RelationEditor;
+use SilverStripe\Assets\File;
+use SilverStripe\Assets\Image;
+use SilverStripe\Forms\CheckboxField;
+use SilverStripe\Forms\DropdownField;
 use SilverStripe\Forms\GridField\GridField;
-use SilverStripe\Forms\LabelField;
 use SilverStripe\Forms\GridField\GridFieldAddNewButton;
+use SilverStripe\Forms\GridField\GridFieldConfig_RelationEditor;
+use SilverStripe\Forms\HTMLEditor\HTMLEditorField;
+use SilverStripe\Forms\LabelField;
+use SilverStripe\TagField\TagField;
 use UndefinedOffset\SortableGridField\Forms\GridFieldSortableRows;
+
 class Article extends Page {
 	private static $db = array(
 
@@ -33,7 +34,7 @@ class Article extends Page {
 
 	private static $owns = array(
 		'PrintableArticle',
-		'Image'
+		'Image',
 	);
 
 	private static $has_many = array(
@@ -74,8 +75,8 @@ class Article extends Page {
 
 	}
 
-	public function getSortedAuthors(){
-		
+	public function getSortedAuthors() {
+
 		$authors = $this->obj('Authors')->sort('SortOrder');
 		return $authors;
 	}
@@ -105,7 +106,6 @@ class Article extends Page {
 		$fields->addFieldToTab('Root.ArticleInfo', $tagField);
 		$fields->addFieldToTab('Root.ArticleInfo', $catField);
 
-
 		//Author field - ArticleInfo tab
 		$authorFieldConfig = GridFieldConfig_RelationEditor::create();
 		$authorFieldConfig->addComponent(new GridFieldSortableRows('SortOrder'));
@@ -127,7 +127,13 @@ class Article extends Page {
 
 		//Footnotes field - Footnotes tab
 		$footnoteFieldConfig = GridFieldConfig_RelationEditor::create();
+
+		//$footnoteFieldConfig->addComponent(new GridFieldPaginator(400));
+
 		$footnoteGridField = new GridField('Footnotes', 'Footnotes', $this->Footnotes(), $footnoteFieldConfig);
+		$footnotePagination = $footnoteFieldConfig->getComponentByType('SilverStripe\Forms\GridField\GridFieldPaginator');
+		$footnotePagination->setItemsPerPage(400);
+
 		$fields->addFieldToTab('Root.Footnotes', $footnoteGridField);
 
 		//Responses field - Responses tab
