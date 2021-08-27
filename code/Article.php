@@ -123,7 +123,7 @@ class Article extends Page {
 		//Article summary/expanded/downloadable text - Article Text tab
 
 		$fields->addFieldToTab('Root.ArticleText', new UploadField('PrintableArticle', 'Downloadable/printable version of the article'));
-		$fields->addFieldToTab('Root.ArticleText', HTMLEditorField::create('Content', 'Article body')->setRows(50)->addExtraClass('stacked'));
+		$fields->addFieldToTab('Root.ArticleText', HTMLEditorField::create('Content', 'Article body')->setRows(50)->addExtraClass('stacked')->addExtraClass('testClass'));
 
 		//Footnotes field - Footnotes tab
 		$footnoteFieldConfig = GridFieldConfig_RelationEditor::create();
