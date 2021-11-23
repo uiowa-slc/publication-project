@@ -83,7 +83,7 @@ class Issue extends Page {
 				'ClassName' => 'Issue',
 				'ParentID' => $this->ParentID,
 				'Volume:LessThan' => $this->Volume
-			))->sort(array('Number DESC', 'Volume DESC'))->First();
+			))->sort(array('Volume DESC', 'Number DESC'))->First();
 		}else{
 
 			$issue = Issue::get()->filter(array(
